@@ -1,0 +1,1 @@
+<input type="text" placeholder="username" class="input input-info input-bordered"/> 
