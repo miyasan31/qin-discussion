@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import Tailwindcss from './Tailwindcss.svelte';
 
-	export let name;
+	export let name: string;
 </script>
 
 <Tailwindcss />
