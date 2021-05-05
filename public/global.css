@@ -10,3 +10,39 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
     sans-serif;
 }
+
+:root {
+  --p: 174 59% 51%;
+  --pf: 174 59% 41%;
+  --pc: 0 0% 100%;
+  --s: 35 100% 53%;
+  --sf: 35 86% 44%;
+  --sc: 0 0% 100%;
+  --a: 0 100% 63%;
+  --af: 0 60% 51%;
+  --ac: 0 0% 100%;
+  --n: 211 14% 61%;
+  --nf: 210 9% 40%;
+  --nc: 0 0% 100%;
+}
+.main-height {
+  height: calc(100vh - 73px);
+}
+.main-h {
+  height: calc(100vh - 150px);
+}
+.border-1 {
+  border: 1px solid #00000022;
+}
+.border-t-1 {
+  border-top: 1px solid #00000022;
+}
+.border-b-1 {
+  border-bottom: 1px solid #00000022;
+}
+.border-l-1 {
+  border-left: 1px solid #00000022;
+}
+.chat-msg {
+  width: fit-content;
+}

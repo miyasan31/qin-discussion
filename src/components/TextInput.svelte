@@ -15,7 +15,7 @@ export let error: boolean;
   <input
     bind:value
     type="text"
-    placeholder="匿名の場合は未入力"
+    placeholder="名前（未入力の場合は匿名）"
     class="input input-primary input-bordered w-full mt-2" />
 {:else if type === 'password'}
   <input
