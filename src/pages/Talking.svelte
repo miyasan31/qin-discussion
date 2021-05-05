@@ -7,6 +7,7 @@ import { TextInput, Progress } from '../components';
 type PostsType = {
   pid: string;
   title: string;
+  creater_name: string;
   create_time: Object;
   checked: boolean;
 };
@@ -15,10 +16,10 @@ let pid = '';
 let post: PostsType = {
   pid: '',
   title: '',
+  creater_name: '',
   create_time: {},
   checked: false,
 };
-let sucses = false;
 
 const handleFetch = () => {
   db.collection('posts')
@@ -48,46 +49,57 @@ onMount(async () => {
 });
 </script>
 
-<p class="text-2xl text-center align-bottom pt-4">話中のやつ</p>
-<hr />
-
-<div class="flex mt-5 mr-10">
-  <div class="flex-grow" />
-  <button class="btn btn-accent btn rounded-lg btn-sm" on:click={handleDone}>削除</button>
-  <button class="btn btn-secondary btn rounded-lg btn-sm" on:click={handleDone}>完了</button>
-</div>
-
-{#if post.title !== ''}
-  <div class="h-96 m-10 card bg-green-200 border-gray-500 shadow-lg">
-    {#if post.checked}
-      <button class="absolute top-2 right-2 btn btn-circle btn-ghost" on:click={handleNone}
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-10 w-10 text-secondary"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </button>
-    {/if}
-    <div class="card-body flex justify-center items-center">
-      <div class="card-title text-6xl text-center">
-        {post.title}
-      </div>
+<section>
+  <div class="w-11/12 py-10 mx-auto">
+    <div class="flex">
+      <div class="flex-grow" />
+      {#if post.checked}
+        <button class="btn btn-accent btn rounded-lg btn-sm" on:click={handleNone}>未完了</button>
+      {:else}
+        <button class="btn btn-secondary btn rounded-lg btn-sm ml-2" on:click={handleDone}>完了</button>
+      {/if}
     </div>
-  </div>
-{:else}
-  <Progress />
-{/if}
 
+    {#if post.title !== ''}
+      <div class="relative mt-14 p-5 pt-10 bg-green-100 border-gray-500 rounded-lg shadow-lg">
+        {#if post.checked}
+          <div class="absolute top-2 right-2 ">
+            <button class="btn btn-circle btn-ghost" on:click={handleNone}
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-10 w-10 text-secondary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </button>
+          </div>
+        {/if}
+        <div class="text-6xl font-bold text-center my-5 pt-8">
+          {post.title}
+        </div>
+        <div class="flex">
+          <div class="flex-grow" />
+          <div class="bg-primary-content rounded-full text-lg font-bold py-2 px-5">
+            {post.creater_name}
+          </div>
+        </div>
+      </div>
+    {:else}
+      <Progress />
+    {/if}
+  </div>
+</section>
+
+<!-- 右下のやつ -->
 <div class="fixed z-20 right-10 bottom-10 mt-4">
   <Link to="/"
-    ><label for="my-modal-2" class="btn btn-primary modal-button px-6 rounded-full"
+    ><label for="my-modal-2" class="btn btn-primary modal-button rounded-full"
       ><svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-6 w-6 pr-1"

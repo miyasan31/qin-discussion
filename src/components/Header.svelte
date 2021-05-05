@@ -6,8 +6,6 @@
 
 <script lang="ts">
 import { Link } from 'svelte-routing';
-
-let modal: boolean = false;
 </script>
 
 <header class="text-gray-600 body-font bg-green-100 py-4 border-b-1">
