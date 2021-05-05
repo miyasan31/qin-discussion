@@ -1,12 +1,3 @@
-<style>
-.border-1 {
-  border: 1px solid #00000022;
-}
-.border-b-1 {
-  border-bottom: 1px solid #00000022;
-}
-</style>
-
 <script lang="ts">
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
@@ -71,19 +62,6 @@ const handleAdd = async () => {
   handleReset();
 };
 
-// const handleEdit = async (pid: string) => {
-//   modal = true;
-//   const snapshot = await db.collection('posts').doc(pid).get();
-//   const post = snapshot.data();
-//   formData = {
-//     pid: post.pid,
-//     title: post.title,
-//     creater_name: post.creater_name,
-//     create_time: {},
-//     checked: false,
-//   };
-// };
-
 const handleReset = () => {
   formData = {
     pid: '',
@@ -93,6 +71,10 @@ const handleReset = () => {
     checked: false,
   };
   modal = false;
+};
+
+const handleModal = () => {
+  modal = !modal;
 };
 
 onMount(async () => {
@@ -109,30 +91,16 @@ onMount(async () => {
     </div>
   </div>
 
-  <!-- modal -->
-  <input type="checkbox" bind:checked={modal} id="my-modal-2" class="modal-toggle" />
-  <div class="modal">
-    <div class="modal-box bg-gray-100">
-      <TextInput bind:value={formData.title} type="text" />
-      <TextInput bind:value={formData.creater_name} type="name" />
-      <div class="flex">
-        <div class="flex-grow" />
-        <button class="btn btn-outline btn-primary btn-sm modal-action" on:click={handleReset}> キャンセル </button>
-        <button class="btn btn-primary btn-sm modal-action ml-2" on:click={handleAdd}> 投稿 </button>
-      </div>
-    </div>
-  </div>
-
   <!-- main -->
-  <div class="h-screen w-10/12 py-10 mx-auto overflow-scroll">
+  <div class="main-h w-10/12 mt-3 mx-auto overflow-scroll">
     {#if tab}
       {#each yetPosts as post}
         <Link to={`/talking/${post.pid}`}>
-          <div class="mx-2 py-5 pl-3 leading-none text-2xl font-bold border-b-1 hover:bg-gray-50 hover:text-green-500 ">
+          <div
+            class="mx-2 py-5 pl-3 leading-none text-2xl font-bold border-b-1 hover:bg-gray-50 hover:text-primary-focus">
             {post.title}
           </div>
         </Link>
-        <!-- <button class="btn btn-secondary btn-sm rounded-lg" on:click={() => handleEdit(post.pid)}>編集</button> -->
       {:else}
         <Progress />
       {/each}
@@ -150,14 +118,30 @@ onMount(async () => {
   </div>
 </section>
 
+<!-- modal -->
+<input type="checkbox" bind:checked={modal} id="my-modal-2" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box bg-gray-100">
+    <TextInput bind:value={formData.title} type="text" />
+    <TextInput bind:value={formData.creater_name} type="name" />
+    <div class="flex">
+      <div class="flex-grow" />
+      <button class="btn btn-outline btn-primary btn-sm modal-action" on:click={handleReset}> キャンセル </button>
+      <button class="btn btn-primary btn-sm modal-action ml-2" on:click={handleAdd}>投稿</button>
+    </div>
+  </div>
+</div>
+
 <!-- 右下のやつ -->
 <div class="fixed right-10 bottom-10 mt-4">
-  <label for="my-modal-2" class="btn btn-primary modal-button px-6 rounded-full"
-    ><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 pr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <button class="btn btn-primary modal-button sm:btn-circle px-3 sm:px-5 rounded-full" on:click={handleModal}
+    ><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="2"
         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-    </svg>お題投稿</label>
+    </svg>
+    <span class="hidden sm:block pl-1">お題投稿</span>
+  </button>
 </div>
