@@ -90,9 +90,19 @@ onMount(async () => {
 
 <section>
   <!-- tab -->
-  <div class="tabs">
-    <div class={`tab tab-bordered tab-lg w-1/2 ${tab ? 'tab-active' : ''}`} on:click={handleTabYet}>まだ話してない</div>
-    <div class={`tab tab-bordered tab-lg w-1/2 ${!tab ? 'tab-active border-blue-500' : ''}`} on:click={handleTabFin}>
+  <div class="w-full flex text-center text-lg cursor-pointer">
+    <div
+      class={`flex-1 py-2.5 border-b-1 ${
+        tab ? 'font-bold border-b-2 border-primary-focus' : 'text-gray-400 hover:text-gray-300'
+      }`}
+      on:click={handleTabYet}>
+      まだ話してない
+    </div>
+    <div
+      class={`flex-1 py-2.5 border-b-1 ${
+        !tab ? 'font-bold border-b-2 border-primary-focus' : 'text-gray-400 hover:text-gray-300'
+      }`}
+      on:click={handleTabFin}>
       もう話した
     </div>
   </div>
@@ -107,18 +117,15 @@ onMount(async () => {
             {post.title}
           </div>
         </Link>
-      {:else}
-        <Progress />
       {/each}
     {:else}
       {#each finPosts as post}
         <Link to={`/talking/${post.pid}`}>
-          <div class="mx-2 py-5 pl-3 leading-none text-2xl font-bold border-b-1 hover:bg-gray-50 hover:text-green-500 ">
+          <div
+            class="mx-2 py-5 pl-3 leading-none text-2xl font-bold border-b-1 hover:bg-gray-50 hover:text-primary-focus">
             {post.title}
           </div>
         </Link>
-      {:else}
-        <Progress />
       {/each}
     {/if}
   </div>
@@ -128,8 +135,8 @@ onMount(async () => {
 <input type="checkbox" bind:checked={modal} id="my-modal-2" class="modal-toggle" />
 <div class="modal">
   <div class="modal-box bg-gray-100">
-    <TextInput bind:value={formData.title} type="text" {error} />
-    <TextInput bind:value={formData.creater_name} type="name" />
+    <TextInput bind:value={formData.title} type="text" bind:error />
+    <TextInput bind:value={formData.creater_name} type="name" bind:error />
     <div class="flex">
       <div class="flex-grow" />
       <button class="btn btn-outline btn-primary btn-sm modal-action" on:click={handleReset}> キャンセル </button>
