@@ -182,7 +182,7 @@ onMount(async () => {
         <textarea
           type="text"
           bind:value={message.text}
-          placeholder="メッセージを入力"
+          placeholder="野次を飛ばす"
           multiple
           class="w-full input input-primary input-bordered input-sm resize-y resize-label" />
         <button class="btn btn-primary btn-sm" on:click={handleSend}>飛</button>
