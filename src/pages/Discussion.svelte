@@ -13,6 +13,7 @@ type PostsType = {
 };
 
 let tab: boolean = true;
+let error: boolean = false;
 let modal: boolean = false;
 let finPosts: PostsType[] = [];
 let yetPosts: PostsType[] = [];
@@ -50,16 +51,20 @@ const handleFetch = () => {
 };
 
 const handleAdd = async () => {
-  const ref = await db.collection('posts').doc();
-  const pid = ref.id;
-  formData.pid = pid;
-  const timestamp = FirebaseTimestamp.now();
-  formData.create_time = timestamp;
-  if (formData.creater_name === '') {
-    formData.creater_name = '匿名さん';
+  if (formData.title !== '') {
+    const ref = await db.collection('posts').doc();
+    const pid = ref.id;
+    formData.pid = pid;
+    const timestamp = FirebaseTimestamp.now();
+    formData.create_time = timestamp;
+    if (formData.creater_name === '') {
+      formData.creater_name = '匿名さん';
+    }
+    db.collection('posts').doc(pid).set(formData, { merge: true });
+    handleReset();
+  } else {
+    error = true;
   }
-  db.collection('posts').doc(pid).set(formData, { merge: true });
-  handleReset();
 };
 
 const handleReset = () => {
@@ -71,6 +76,7 @@ const handleReset = () => {
     checked: false,
   };
   modal = false;
+  error = false;
 };
 
 const handleModal = () => {
@@ -122,7 +128,7 @@ onMount(async () => {
 <input type="checkbox" bind:checked={modal} id="my-modal-2" class="modal-toggle" />
 <div class="modal">
   <div class="modal-box bg-gray-100">
-    <TextInput bind:value={formData.title} type="text" />
+    <TextInput bind:value={formData.title} type="text" {error} />
     <TextInput bind:value={formData.creater_name} type="name" />
     <div class="flex">
       <div class="flex-grow" />
