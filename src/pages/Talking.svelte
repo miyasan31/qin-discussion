@@ -116,21 +116,19 @@ onMount(async () => {
           {post.title}
           <!-- checkedボタン -->
           {#if post.checked}
-            <div class="absolute -top-2 -right-10 ">
-              <button class="btn btn-circle btn-ghost" on:click={handleNone}
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-10 w-10 text-secondary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </button>
+            <div class={`absolute -top-5 ${toggle ? '-right-5' : '-right-8'} `}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-20 w-20 text-secondary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
             </div>
           {/if}
         </div>
@@ -157,10 +155,10 @@ onMount(async () => {
           </p>
         </div>
         <div class="flex-grow" />
-        <button class="btn btn-ghost btn-circle btn-sm mr-4" on:click={handleToggle}
-          ><svg
+        <button class="btn btn-ghost btn-sm mr-4" on:click={handleToggle}
+          >閉じる<svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            class="h-4 w-4"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor">
@@ -184,8 +182,8 @@ onMount(async () => {
           bind:value={message.text}
           placeholder="野次を飛ばす"
           multiple
-          class="w-full input input-primary input-bordered input-sm resize-y resize-label" />
-        <button class="btn btn-primary btn-sm" on:click={handleSend}>飛</button>
+          class="w-full pt-4 input input-primary input-bordered leading-tight resize-y resize-label" />
+        <button class="btn btn-primary" on:click={handleSend}>飛</button>
       </div>
     </div>
   {/if}

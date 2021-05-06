@@ -9,9 +9,8 @@ module.exports = {
     //   defaultExtractor: (content) =>
     //     [...content.matchAll(/(?:class:)*([\w\d-/:%.]+)/gm)].map(([_match, group, ..._rest]) => group),
     // },
-
   },
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
   },
@@ -19,6 +18,4 @@ module.exports = {
     extend: {},
   },
   plugins: [require('daisyui')],
-}
-
-
+};

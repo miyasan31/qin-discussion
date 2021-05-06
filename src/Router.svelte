@@ -5,7 +5,7 @@ import { Discussion, Talking, Admin, Setting, NotFound } from './pages';
 </script>
 
 <Router>
-  <div class="fixed w-full">
+  <div class="fixed w-full" data-theme="root">
     <div class="top-0">
       <Header />
     </div>

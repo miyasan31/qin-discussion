@@ -60,8 +60,6 @@ const handleDelete = (pid: string) => {
         <div class="flex-grow" />
         <button class="btn btn-accent btn-sm rounded-lg" on:click={() => handleDelete(post.pid)}>削除</button>
       </div>
-    {:else}
-      <Progress />
     {/each}
   </div>
 </section>
@@ -70,7 +68,7 @@ const handleDelete = (pid: string) => {
 <input type="checkbox" bind:checked={modal} id="my-modal-2" class="modal-toggle" />
 <div class="modal bg-green-100">
   <div class="modal-box bg-gray-100">
-    <TextInput bind:value={password} {error} type="password" />
+    <TextInput bind:value={password} type="password" bind:error />
     <div class="flex">
       <div class="flex-grow" />
       <Link to="/">
