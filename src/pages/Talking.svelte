@@ -2,7 +2,7 @@
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import { db, FirebaseTimestamp } from '../firebase/firebase';
-import { TextInput, Progress } from '../components';
+import { Progress } from '../components';
 
 type PostsType = {
   pid: string;
@@ -95,7 +95,7 @@ onMount(async () => {
 </script>
 
 <section class="flex w-full main-h">
-  <div class="flex-1 px-5 mt-3">
+  <div class={`flex-1 px-5 mt-3 ${toggle && 'hidden sm:block'} `}>
     <!-- 上のボタン類 -->
     <div class="flex">
       <Link to="/">
@@ -112,7 +112,7 @@ onMount(async () => {
     {#if post.title !== ''}
       <div class="flex flex-col justify-center items-center h-96 mt-20 rounded-xl border-0 border-primary">
         <!-- 真ん中のカード -->
-        <div class="relative text-6xl font-bold text-center text-primary-focus my-5 pt-8">
+        <div class="relative text-6xl font-bold text-center my-5 pt-8">
           {post.title}
           <!-- checkedボタン -->
           {#if post.checked}
@@ -136,7 +136,7 @@ onMount(async () => {
         </div>
         <div class="flex">
           <div class="flex-grow" />
-          <div class="rounded-full text-lg font-bold text-white bg-neutral py-2 px-5">
+          <div class="rounded-full text-lg font-bold text-white bg-primary py-2 px-5">
             {post.creater_name}
           </div>
         </div>
@@ -148,9 +148,14 @@ onMount(async () => {
 
   {#if toggle}
     <!-- 野次欄 -->
-    <div class="flex-1 flex flex-col max-w-md main-height border-l-1">
+    <div class={`flex-1 flex flex-col sm:max-w-lg ${toggle ? 'w-full' : ''} main-height border-l-1`}>
       <div class="flex items-center border-b-1 p-1">
-        <p class="m-0 pl-2 py-2.5 font-bold">ディスカッションに参加しよう！</p>
+        <div>
+          <p class="m-0 pl-2 pt-2.5 font-bold text-sm leading-none">ディスカッションに参加しよう！</p>
+          <p class={`m-0 pl-3 pt-0.5 pb-2.5 text-gray-400 font-bold text-xs leading-none`}>
+            #{post.title}
+          </p>
+        </div>
         <div class="flex-grow" />
         <button class="btn btn-ghost btn-circle btn-sm mr-4" on:click={handleToggle}
           ><svg
@@ -164,15 +169,22 @@ onMount(async () => {
       </div>
       <div class="flex-grow flex flex-col-reverse overflow-scroll">
         {#each comments as comment}
-          <div class="chat-msg bg-gray-100 p-3 text-md mb-2 ml-2 rounded-full">{comment.text}</div>
+          {#if comment.text.lastIndexOf('？') === -1}
+            <div class="chat-msg bg-gray-100 p-3 text-md mb-2 mx-2 rounded-xl whitespace-pre-line">
+              {comment.text}
+            </div>
+          {:else}
+            <div class="chat-msg bg-green-100 p-3 text-md mb-2 ml-2 rounded-xl">{comment.text}</div>
+          {/if}
         {/each}
       </div>
-      <div class="flex space-x-2 border-t-1 p-2">
-        <input
+      <div class="flex space-x-2 border-t-1 p-2 bg-gray-50">
+        <textarea
           type="text"
           bind:value={message.text}
-          placeholder="野次を飛ばす"
-          class="w-full input input-primary input-bordered input-sm" />
+          placeholder="メッセージを入力"
+          multiple
+          class="w-full input input-primary input-bordered input-sm resize-y resize-label" />
         <button class="btn btn-primary btn-sm" on:click={handleSend}>飛</button>
       </div>
     </div>

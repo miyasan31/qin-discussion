@@ -46,3 +46,6 @@ body {
 .chat-msg {
   width: fit-content;
 }
+.resize-label::-webkit-resizer {
+  display: none;
+}
