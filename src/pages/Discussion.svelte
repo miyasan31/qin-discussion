@@ -2,7 +2,7 @@
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import { db, FirebaseTimestamp } from '../firebase/firebase';
-import { TextInput, Progress } from '../components';
+import { TextInput } from '../components';
 
 type PostsType = {
   pid: string;
@@ -139,7 +139,7 @@ onMount(async () => {
     <TextInput bind:value={formData.creater_name} type="name" bind:error />
     <div class="flex">
       <div class="flex-grow" />
-      <button class="btn btn-outline btn-primary btn-sm modal-action" on:click={handleReset}> キャンセル </button>
+      <button class="btn btn-outline btn-primary btn-sm modal-action" on:click={handleReset}>キャンセル</button>
       <button class="btn btn-primary btn-sm modal-action ml-2" on:click={handleAdd}>投稿</button>
     </div>
   </div>
