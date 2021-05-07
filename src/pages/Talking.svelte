@@ -2,7 +2,8 @@
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import { db, FirebaseTimestamp } from '../firebase/firebase';
-import { Progress } from '../components';
+import { TextInput, Progress } from '../components';
+import { name, admin } from '../store';
 
 type PostsType = {
   pid: string;
@@ -13,11 +14,17 @@ type PostsType = {
 };
 type CommetsType = {
   text: string;
+  creater_name: string;
   create_time: Object;
 };
 
-let toggle: boolean = false;
 let pid = '';
+let handleType: number = 0;
+let userName: string = '';
+let password: string = '';
+let error: boolean = false;
+let toggle: boolean = false;
+let modal: boolean = false;
 let post: PostsType = {
   pid: '',
   title: '',
@@ -27,6 +34,7 @@ let post: PostsType = {
 };
 let message: CommetsType = {
   text: '',
+  creater_name: '',
   create_time: {},
 };
 let comments: CommetsType[] = [];
@@ -53,38 +61,69 @@ const handleFetchComments = () => {
     });
 };
 
-const handleDone = () => {
-  let formData = {
-    checked: true,
-  };
-  db.collection('posts').doc(pid).set(formData, { merge: true });
-};
-
-const handleNone = () => {
-  let formData = {
-    checked: false,
-  };
-  db.collection('posts').doc(pid).set(formData, { merge: true });
-};
-
 const handleToggle = () => {
-  toggle = !toggle;
+  if ($name === '') {
+    handleType = 2;
+    modal = true;
+  } else {
+    toggle = !toggle;
+  }
 };
 
-const handleSend = () => {
-  if (message.text !== '') {
-    const timestamp = FirebaseTimestamp.now();
-    message.create_time = timestamp;
-    db.collection('posts').doc(pid).collection('comments').doc().set(message);
-    handleReset();
+const handleChenge = () => {
+  if (!$admin) {
+    handleType = 1;
+    modal = true;
+  } else {
+    let posts = {
+      checked: !post.checked,
+    };
+    db.collection('posts').doc(pid).set(posts, { merge: true });
+  }
+};
+
+const handleNameSet = () => {
+  modal = false;
+  if (userName === '') {
+    $name = '匿名';
+  } else {
+    $name = userName;
+  }
+  toggle = true;
+};
+
+const handleDone = () => {
+  if (handleType === 2) {
+    handleNameSet();
+  } else if (handleType === 1 && password === 'miyasanismiya3') {
+    $admin = !$admin;
+    modal = false;
+    handleChenge();
+  } else {
+    error = true;
   }
 };
 
 const handleReset = () => {
   message = {
     text: '',
+    creater_name: '',
     create_time: {},
   };
+};
+
+const handleModalClose = () => {
+  modal = false;
+};
+
+const handleSend = () => {
+  if (message.text !== '') {
+    const timestamp = FirebaseTimestamp.now();
+    message.create_time = timestamp;
+    message.creater_name = $name;
+    db.collection('posts').doc(pid).collection('comments').doc().set(message);
+    handleReset();
+  }
 };
 
 onMount(async () => {
@@ -102,9 +141,9 @@ onMount(async () => {
         <button class="btn btn-primary btn rounded-lg btn-sm">一覧へ戻る</button></Link>
       <div class="flex-grow" />
       {#if post.checked}
-        <button class="btn btn-accent btn rounded-lg btn-sm  ml-2" on:click={handleNone}>取消</button>
+        <button class="btn btn-accent btn rounded-lg btn-sm  ml-2" on:click={handleChenge}>取消</button>
       {:else}
-        <button class="btn btn-secondary btn rounded-lg btn-sm  ml-2" on:click={handleDone}>終了</button>
+        <button class="btn btn-secondary btn rounded-lg btn-sm  ml-2" on:click={handleChenge}>終了</button>
       {/if}
       <button class="btn btn-neutral btn rounded-lg btn-sm ml-2" on:click={handleToggle}>スレッド</button>
     </div>
@@ -168,19 +207,31 @@ onMount(async () => {
       <div class="flex-grow flex flex-col-reverse overflow-scroll">
         {#each comments as comment}
           {#if comment.text.lastIndexOf('？') === -1}
-            <div class="chat-msg bg-gray-100 p-3 text-md mb-2 mx-2 rounded-xl whitespace-pre-line">
-              {comment.text}
+            <div class="mx-2 mb-2">
+              <div class="chat-msg font-bold pl-1 text-sm">
+                {comment.creater_name}
+              </div>
+              <div class="chat-msg bg-gray-100 px-3 py-1.5 text-md rounded-xl whitespace-pre-line">
+                {comment.text}
+              </div>
             </div>
           {:else}
-            <div class="chat-msg bg-green-100 p-3 text-md mb-2 ml-2 rounded-xl">{comment.text}</div>
+            <div class="mx-2 mb-2">
+              <div class="chat-msg font-bold pl-1 text-sm">
+                {comment.creater_name}
+              </div>
+              <div class="chat-msg bg-green-100 px-3 py-1.5 text-md rounded-xl whitespace-pre-line">
+                {comment.text}
+              </div>
+            </div>
           {/if}
         {/each}
       </div>
-      <div class="flex space-x-2 border-t-1 p-2 bg-gray-50">
+      <div class="flex space-x-2 border-t-1 p-1 bg-gray-50">
         <textarea
           type="text"
           bind:value={message.text}
-          placeholder="野次を飛ばす"
+          placeholder={`${$name}から野次を飛ばす`}
           multiple
           class="w-full pt-4 input input-primary input-bordered leading-tight resize-y resize-label" />
         <button class="btn btn-primary" on:click={handleSend}>飛</button>
@@ -188,3 +239,21 @@ onMount(async () => {
     </div>
   {/if}
 </section>
+
+<!-- modal -->
+<input type="checkbox" bind:checked={modal} id="my-modal-2" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box bg-gray-100">
+    {#if handleType === 1}
+      <TextInput bind:value={password} type="password" bind:error />
+    {:else if handleType === 2}
+      <TextInput bind:value={userName} type="name" />
+    {/if}
+    <div class="flex">
+      <div class="flex-grow" />
+      <button class="btn btn-outline btn-primary btn-sm modal-action ml-2" on:click={handleModalClose}
+        >キャンセル</button>
+      <button class="btn btn-primary btn-sm modal-action ml-2" on:click={handleDone}>決定</button>
+    </div>
+  </div>
+</div>
