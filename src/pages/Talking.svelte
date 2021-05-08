@@ -4,6 +4,7 @@ import { onMount } from 'svelte';
 import { db, FirebaseTimestamp } from '../firebase/firebase';
 import { TextInput, Progress } from '../components';
 import { name, admin } from '../store';
+import clsx from 'clsx';
 
 type PostsType = {
   pid: string;
@@ -16,6 +17,19 @@ type CommetsType = {
   text: string;
   creater_name: string;
   create_time: Object;
+};
+type TitleSizeType = {
+  'text-2xl sm:text-6xl': boolean;
+  'text-2xl sm:text-5xl': boolean;
+  'text-2xl sm:text-4xl': boolean;
+  'text-xl sm:text-3xl': boolean;
+  'text-lg sm:text-2xl': boolean;
+  'text-md sm:text-xl': boolean;
+  // 'sm:text-lg': boolean;
+  // 'sm:text-md': boolean;
+  // 'sm:text-sm': boolean;
+  // 'sm:text-base': boolean;
+  // 'sm:text-xs': boolean;
 };
 
 let pid = '';
@@ -38,12 +52,22 @@ let message: CommetsType = {
   create_time: {},
 };
 let comments: CommetsType[] = [];
+let title_size: TitleSizeType;
 
 const handleFetch = () => {
   db.collection('posts')
     .doc(pid)
     .onSnapshot((doc) => {
       post = doc.data() as PostsType;
+
+      title_size = {
+        'text-2xl sm:text-6xl': post.title.length >= 0 && post.title.length < 40,
+        'text-2xl sm:text-5xl': post.title.length >= 41 && post.title.length < 80,
+        'text-2xl sm:text-4xl': post.title.length >= 81 && post.title.length < 120,
+        'text-xl sm:text-3xl': post.title.length >= 121 && post.title.length < 160,
+        'text-lg sm:text-2xl': post.title.length >= 161 && post.title.length < 200,
+        'text-md sm:text-xl': post.title.length >= 201,
+      };
     });
 };
 
@@ -85,7 +109,7 @@ const handleChenge = () => {
 const handleNameSet = () => {
   modal = false;
   if (userName === '') {
-    $name = '匿名';
+    $name = '匿名さん';
   } else {
     $name = userName;
   }
@@ -133,7 +157,7 @@ onMount(async () => {
 });
 </script>
 
-<section class="flex w-full main-h">
+<section class="flex w-full main-height">
   <div class={`flex-1 px-5 mt-3 ${toggle && 'hidden sm:block'} `}>
     <!-- 上のボタン類 -->
     <div class="flex">
@@ -149,16 +173,23 @@ onMount(async () => {
     </div>
 
     {#if post.title !== ''}
-      <div class="flex flex-col justify-center items-center h-96 mt-20 rounded-xl border-0 border-primary">
+      <div class="flex flex-col main-talk lg:w-11/12 mx-auto">
+        <div class="flex-grow" />
         <!-- 真ん中のカード -->
-        <div class="relative text-6xl font-bold text-center my-5 pt-8">
+        <div class={clsx('font-bold text-center my-5 pt-8 whitespace-pre-line overflow-scroll', title_size)}>
           {post.title}
-          <!-- checkedボタン -->
-          {#if post.checked}
-            <div class={`absolute -top-5 ${toggle ? '-right-5' : '-right-8'} `}>
+        </div>
+
+        <div class="flex justify-center">
+          <div class="flex items-center justify-center rounded-full    bg-primary py-2 sm:py-2.5 px-2.5 sm:px-4">
+            <span class="text-sm sm:text-xl text-white font-bold">
+              {post.creater_name}
+            </span>
+            <!-- checkedボタン -->
+            {#if post.checked}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-20 w-20 text-secondary"
+                class="h-6 w-6 sm:h-9 sm:w-9 text-secondary ml-0.5 -my-1 sm:ml-1 sm:-my-1.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -168,15 +199,11 @@ onMount(async () => {
                   stroke-width="2"
                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-            </div>
-          {/if}
-        </div>
-        <div class="flex">
-          <div class="flex-grow" />
-          <div class="rounded-full text-lg font-bold text-white bg-primary py-2 px-5">
-            {post.creater_name}
+            {/if}
           </div>
         </div>
+
+        <div class="flex-grow" />
       </div>
     {:else}
       <Progress />
@@ -190,7 +217,7 @@ onMount(async () => {
         <div>
           <p class="m-0 pl-2 pt-2.5 font-bold text-sm leading-none">ディスカッションに参加しよう！</p>
           <p class={`m-0 pl-3 pt-0.5 pb-2.5 text-gray-400 font-bold text-xs leading-none`}>
-            #{post.title}
+            #{post.title.substr(0, 25)}...
           </p>
         </div>
         <div class="flex-grow" />
@@ -253,7 +280,13 @@ onMount(async () => {
       <div class="flex-grow" />
       <button class="btn btn-outline btn-primary btn-sm modal-action ml-2" on:click={handleModalClose}
         >キャンセル</button>
-      <button class="btn btn-primary btn-sm modal-action ml-2" on:click={handleDone}>決定</button>
+      <button class="btn btn-primary btn-sm modal-action ml-2" on:click={handleDone}
+        >{#if handleType === 1}
+          認証
+        {:else if handleType === 2}
+          決定
+        {/if}
+      </button>
     </div>
   </div>
 </div>
