@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@smui/icon-button": "^4.1.0",
+    "@tailwindcss/typography": "^0.4.0",
     "clsx": "^1.1.1",
     "daisyui": "^0.21.3",
     "firebase": "^8.4.3",
