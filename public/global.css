@@ -37,7 +37,7 @@ body {
   height: calc(100vh - 73px);
 }
 .main-h {
-  height: calc(100vh - 150px);
+  height: calc(100vh - 125px);
 }
 .main-talk {
   height: calc(100vh - 200px);
@@ -61,3 +61,7 @@ body {
   display: none;
 }
 /* miyasanismiya3 */
+
+.bar-hidden::-webkit-scrollbar {
+  display: none;
+}

@@ -82,15 +82,19 @@ const handleFetchComments = () => {
         cmt.push({ ...doc.data() });
       });
       comments = [...cmt];
+      console.log(cmt);
     });
 };
 
-const handleToggle = () => {
+const handleToggle = async () => {
   if ($name === '') {
     handleType = 2;
     modal = true;
-  } else {
-    toggle = !toggle;
+  } else if (toggle) {
+    toggle = false;
+  } else if (!toggle) {
+    toggle = true;
+    await handleFetchComments();
   }
 };
 
@@ -106,7 +110,7 @@ const handleChenge = () => {
   }
 };
 
-const handleNameSet = () => {
+const handleNameSet = async () => {
   modal = false;
   if (userName === '') {
     $name = '匿名さん';
@@ -114,6 +118,7 @@ const handleNameSet = () => {
     $name = userName;
   }
   toggle = true;
+  await handleFetchComments();
 };
 
 const handleDone = () => {
@@ -153,7 +158,6 @@ const handleSend = () => {
 onMount(async () => {
   pid = await window.location.pathname.split('/talking/')[1];
   await handleFetch();
-  await handleFetchComments();
 });
 </script>
 
@@ -176,12 +180,17 @@ onMount(async () => {
       <div class="flex flex-col main-talk lg:w-11/12 mx-auto">
         <div class="flex-grow" />
         <!-- 真ん中のカード -->
-        <div class={clsx('font-bold text-center my-5 pt-8 whitespace-pre-line overflow-scroll', title_size)}>
+        <p
+          style="line-height: 1.4;"
+          class={clsx(
+            'block font-bold leading-6 text-center mb-5 whitespace-pre-line overflow-scroll bar-hidden',
+            title_size
+          )}>
           {post.title}
-        </div>
+        </p>
 
         <div class="flex justify-center">
-          <div class="flex items-center justify-center rounded-full    bg-primary py-2 sm:py-2.5 px-2.5 sm:px-4">
+          <div class="flex items-center justify-center rounded-full    bg-primary py-2 sm:py-3 px-3 sm:px-5">
             <span class="text-sm sm:text-xl text-white font-bold">
               {post.creater_name}
             </span>
@@ -189,7 +198,7 @@ onMount(async () => {
             {#if post.checked}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 sm:h-9 sm:w-9 text-secondary ml-0.5 -my-1 sm:ml-1 sm:-my-1.5"
+                class="h-6 w-6 sm:h-9 sm:w-9 text-secondary ml-0.5 -my-1 -mr-1 sm:ml-1 sm:-mr-1.5 sm:-my-1.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -217,7 +226,7 @@ onMount(async () => {
         <div>
           <p class="m-0 pl-2 pt-2.5 font-bold text-sm leading-none">ディスカッションに参加しよう！</p>
           <p class={`m-0 pl-3 pt-0.5 pb-2.5 text-gray-400 font-bold text-xs leading-none`}>
-            #{post.title.substr(0, 25)}...
+            #{post.title.substr(0, 25)}{#if post.title.length > 25}...{/if}
           </p>
         </div>
         <div class="flex-grow" />
@@ -231,7 +240,7 @@ onMount(async () => {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg></button>
       </div>
-      <div class="flex-grow flex flex-col-reverse overflow-scroll">
+      <div class="flex-grow flex flex-col-reverse overflow-scroll overflow-x-hidden">
         {#each comments as comment}
           {#if comment.text.lastIndexOf('？') === -1}
             <div class="mx-2 mb-2">

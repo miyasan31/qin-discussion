@@ -108,12 +108,11 @@ onMount(async () => {
   </div>
 
   <!-- main -->
-  <div class="main-h w-10/12 mt-3 mx-auto overflow-scroll">
+  <div class="main-h mx-auto overflow-y-auto px-3 sm:px-14 md:px-24 lg:px-32 pb-60">
     {#if tab}
       {#each yetPosts as post}
         <Link to={`/talking/${post.pid}`}>
-          <div
-            class="mx-2 py-5 pl-3 leading-none text-2xl font-bold border-b-1 hover:bg-gray-50 hover:text-primary-focus">
+          <div class="mx-2 py-5 pl-3 text-2xl font-bold border-b-1 hover:bg-gray-50 hover:text-primary-focus">
             {post.title}
           </div>
         </Link>
@@ -121,8 +120,7 @@ onMount(async () => {
     {:else}
       {#each finPosts as post}
         <Link to={`/talking/${post.pid}`}>
-          <div
-            class="mx-2 py-5 pl-3 leading-none text-2xl font-bold border-b-1 hover:bg-gray-50 hover:text-primary-focus">
+          <div class="mx-2 py-5 pl-3 text-2xl font-bold border-b-1 hover:bg-gray-50 hover:text-primary-focus">
             {post.title}
           </div>
         </Link>
