@@ -44,17 +44,17 @@ const handleDelete = (pid: string) => {
 
 <section>
   <!-- 上のボタン類 -->
-  <div class="flex px-5 mt-3">
+  <div class="absolute flex px-5 mt-3">
     <Link to="/">
       <button class="btn btn-primary btn rounded-lg btn-sm">一覧へ戻る</button></Link>
     <div class="flex-grow" />
   </div>
 
   <!-- main -->
-  <div class="main-h w-10/12 mt-2 mx-auto overflow-scroll">
+  <div class="main-height mx-auto overflow-y-auto px-3  md:px-32 pb-60">
     {#each posts as post}
       <div class="flex items-center border-b-1 hover:bg-gray-50 hover:text-primary-focus">
-        <div class="mx-2 py-5 pl-3 leading-none text-2xl font-bold ">
+        <div class="mx-2 py-5 pl-3　text-2xl font-bold ">
           {post.title}
         </div>
         <div class="flex-grow" />
