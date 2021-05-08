@@ -15,8 +15,8 @@ body {
   --p: 174 59% 51%;
   --pf: 174 59% 41%;
   --pc: 0 0% 100%;
-  --s: 35 100% 53%;
-  --sf: 35 86% 44%;
+  --s: 41 100% 57%;
+  --sf: 41 74% 48%;
   --sc: 0 0% 100%;
   --a: 0 100% 63%;
   --af: 0 60% 51%;
@@ -39,6 +39,9 @@ body {
 .main-h {
   height: calc(100vh - 150px);
 }
+.main-talk {
+  height: calc(100vh - 200px);
+}
 .border-1 {
   border: 1px solid #00000022;
 }
@@ -57,3 +60,4 @@ body {
 .resize-label::-webkit-resizer {
   display: none;
 }
+/* miyasanismiya3 */
