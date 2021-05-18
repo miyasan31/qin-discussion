@@ -25,11 +25,6 @@ type TitleSizeType = {
   'text-xl sm:text-3xl': boolean;
   'text-lg sm:text-2xl': boolean;
   'text-md sm:text-xl': boolean;
-  // 'sm:text-lg': boolean;
-  // 'sm:text-md': boolean;
-  // 'sm:text-sm': boolean;
-  // 'sm:text-base': boolean;
-  // 'sm:text-xs': boolean;
 };
 
 let pid = '';
@@ -55,7 +50,7 @@ let comments: CommetsType[] = [];
 let title_size: TitleSizeType;
 
 const handleFetch = () => {
-  db.collection('posts')
+  db.collection('posts20210530')
     .doc(pid)
     .onSnapshot((doc) => {
       post = doc.data() as PostsType;
@@ -72,7 +67,7 @@ const handleFetch = () => {
 };
 
 const handleFetchComments = () => {
-  db.collection('posts')
+  db.collection('posts20210530')
     .doc(pid)
     .collection('comments')
     .orderBy('create_time', 'desc')
@@ -106,7 +101,7 @@ const handleChenge = () => {
     let posts = {
       checked: !post.checked,
     };
-    db.collection('posts').doc(pid).set(posts, { merge: true });
+    db.collection('posts20210530').doc(pid).set(posts, { merge: true });
   }
 };
 
@@ -150,7 +145,7 @@ const handleSend = () => {
     const timestamp = FirebaseTimestamp.now();
     message.create_time = timestamp;
     message.creater_name = $name;
-    db.collection('posts').doc(pid).collection('comments').doc().set(message);
+    db.collection('posts20210530').doc(pid).collection('comments').doc().set(message);
     handleReset();
   }
 };

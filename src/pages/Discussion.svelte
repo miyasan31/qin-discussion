@@ -33,7 +33,7 @@ const handleTabFin = () => {
 };
 
 const handleFetch = () => {
-  db.collection('posts')
+  db.collection('posts20210530')
     .orderBy('create_time', 'desc')
     .onSnapshot((snapshot) => {
       let finDocs = [];
@@ -52,7 +52,7 @@ const handleFetch = () => {
 
 const handleAdd = async () => {
   if (formData.title !== '') {
-    const ref = await db.collection('posts').doc();
+    const ref = await db.collection('posts20210530').doc();
     const pid = ref.id;
     formData.pid = pid;
     const timestamp = FirebaseTimestamp.now();
@@ -60,7 +60,7 @@ const handleAdd = async () => {
     if (formData.creater_name === '') {
       formData.creater_name = '匿名さん';
     }
-    db.collection('posts').doc(pid).set(formData, { merge: true });
+    db.collection('posts20210530').doc(pid).set(formData, { merge: true });
     handleReset();
   } else {
     error = true;
