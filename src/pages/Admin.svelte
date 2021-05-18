@@ -16,7 +16,7 @@ let posts: PostsType[] = [];
 let password: string = '';
 
 const handleFetch = () => {
-  db.collection('posts')
+  db.collection('posts20210530')
     .orderBy('create_time', 'desc')
     .onSnapshot((snapshot) => {
       let docs = [];
@@ -38,7 +38,7 @@ const handleAuth = async () => {
 };
 
 const handleDelete = (pid: string) => {
-  db.collection('posts').doc(pid).delete();
+  db.collection('posts20210530').doc(pid).delete();
 };
 </script>
 
