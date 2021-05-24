@@ -1,4 +1,7 @@
 {
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
   "editor.formatOnPaste": true,
   "editor.tabSize": 2,
   "[svelte]": {
@@ -16,5 +19,6 @@
   "editor.codeActionsOnSave": {
     // "source.organizeImports": true,
     "source.fixAll.eslint": true
-  }
+  },
+  "workbench.colorTheme": "GitHub Dark"
 }
