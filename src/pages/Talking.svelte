@@ -19,15 +19,16 @@ let post: PostsType = {
 const handleFetch = () => {
   db.collection('posts20210530')
     .doc(pid)
-    .onSnapshot((doc) => {
+    .get()
+    .then((doc) => {
       post = doc.data() as PostsType;
       title_size = {
         'text-2xl sm:text-6xl': post.title.length >= 0 && post.title.length < 25,
-        'text-2xl sm:text-5xl': post.title.length >= 26 && post.title.length < 50,
-        'text-2xl sm:text-4xl': post.title.length >= 51 && post.title.length < 75,
-        'text-xl sm:text-3xl': post.title.length >= 76 && post.title.length < 100,
-        'text-lg sm:text-2xl': post.title.length >= 101 && post.title.length < 125,
-        'text-md sm:text-xl': post.title.length >= 126,
+        'text-2xl sm:text-5xl': post.title.length >= 25 && post.title.length < 50,
+        'text-2xl sm:text-4xl': post.title.length >= 50 && post.title.length < 75,
+        'text-xl sm:text-3xl': post.title.length >= 70 && post.title.length < 100,
+        'text-lg sm:text-2xl': post.title.length >= 100 && post.title.length < 125,
+        'text-md sm:text-xl': post.title.length >= 125,
       };
     });
 };
@@ -45,27 +46,27 @@ onMount(async () => {
 });
 </script>
 
-<section class="flex w-full main-height">
-  <div class="flex-1 px-5 mt-3">
-    <div class="flex">
-      <Link to="/">
-        <button class="btn btn-primary btn rounded-lg btn-sm">一覧へ戻る</button></Link>
+<section class="w-full main-height">
+  <div class="absolute top-16 pt-2 pl-4 flex">
+    <Link to="/">
+      <button class="btn btn-primary btn-util">一覧へ戻る</button>
+    </Link>
+    {#if $admin}
       {#if post.checked}
-        <button
-          class="btn btn-accent btn rounded-lg btn-sm ml-2"
-          disabled={$admin ? false : true}
-          on:click={handleChenge}>取消</button>
+        <button class="btn btn-accent btn-util" disabled={$admin ? false : true} on:click={handleChenge}>取消</button>
       {:else}
-        <button
-          class="btn btn-secondary btn rounded-lg btn-sm  ml-2"
-          disabled={$admin ? false : true}
-          on:click={handleChenge}>終了</button>
+        <button class="btn btn-secondary btn-util" disabled={$admin ? false : true} on:click={handleChenge}
+          >終了</button>
       {/if}
+    {/if}
+    <div class="flex-grow" />
+  </div>
+
+  {#if post.title !== ''}
+    <div class="flex flex-col main-height px-8">
       <div class="flex-grow" />
-    </div>
-    {#if post.title !== ''}
-      <div class="flex flex-col main-talk lg:w-11/12 mx-auto">
-        <div class="flex-grow" />
+
+      <div class="flex-1">
         <p
           style="line-height: 1.4;"
           class={clsx(
@@ -95,8 +96,9 @@ onMount(async () => {
             {/if}
           </div>
         </div>
-        <div class="flex-grow" />
       </div>
-    {/if}
-  </div>
+
+      <div class="flex-grow" />
+    </div>
+  {/if}
 </section>

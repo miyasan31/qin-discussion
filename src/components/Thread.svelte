@@ -48,7 +48,7 @@ onMount(async () => {
 });
 </script>
 
-<div class={`flex-1 flex flex-col sm:max-w-lg main-height border-l-1`}>
+<div class="flex-1 flex flex-col main-height border-l-1">
   <div class="flex items-center border-b-1">
     <div>
       <p class="m-0 pl-3 py-3.5 font-bold text-sm border-t-1-none">ディスカッションに参加しよう！</p>
@@ -64,7 +64,7 @@ onMount(async () => {
             {comment.creater_name}
           </div>
           <div class="chat-msg bg-gray-100 px-3 py-1.5 text-md rounded-xl whitespace-pre-line">
-            {comment.text}
+            {comment.text.trim()}
           </div>
         </div>
       {:else}

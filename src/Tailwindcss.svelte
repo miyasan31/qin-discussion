@@ -15,5 +15,8 @@
 .error-input {
   @apply bg-red-200;
 }
+.btn-util {
+  @apply btn-sm mr-2;
+}
 @tailwind utilities;
 </style>
