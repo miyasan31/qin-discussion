@@ -35,7 +35,7 @@ const handleAdmin = () => {
   <slot />
 {:else}
   <div class="flex justify-center items-center h-screen w-full bg-green-100">
-    <div class="card w-5/12 bg-gray-100 shadow-xl">
+    <div class="card w-10/12 sm:w-8/12 md:w-5/12 bg-gray-100 shadow-xl">
       <div class="w-full flex cursor-pointer bg-white">
         <div class="tab-base" class:tab-active={tab} on:click={handleTabYet}>視聴者</div>
         <div class="tab-base" class:tab-active={!tab} on:click={handleTabFin}>管理者</div>

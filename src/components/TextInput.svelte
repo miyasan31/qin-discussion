@@ -10,7 +10,7 @@ export let error: boolean;
     type="text"
     rows="3"
     placeholder="お題を入力"
-    class="input input-primary input-bordered w-full h-32 resize-none mb-2.5"
+    class="input input-primary input-bordered w-full h-32 sm:h-40 resize-none mb-2.5"
     class:error-input={error} />
 {:else if type === 'name'}
   <input

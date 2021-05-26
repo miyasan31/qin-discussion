@@ -31,27 +31,26 @@ onMount(async () => {
 });
 </script>
 
-<section>
-  {#if $admin}
-    <div class="fixed z-50 bg-white">
-      <div class="flex px-5 mt-3">
-        <Link to="/">
-          <button class="btn btn-primary btn rounded-lg btn-sm">一覧へ戻る</button></Link>
-        <div class="flex-grow" />
-      </div>
-      <div class="main-height mx-auto overflow-y-auto px-3  md:px-32 pb-60">
-        {#each posts as post}
-          <div class="flex items-center border-b-1 hover:bg-gray-100">
-            <div class="mx-2 py-5 pl-3　text-2xl font-bold">
-              {post.title}
-            </div>
-            <div class="flex-grow" />
-            <button class="btn btn-accent btn-sm rounded-lg" on:click={() => handleDelete(post.pid)}>削除</button>
-          </div>
-        {/each}
-      </div>
+{#if $admin}
+  <section class="w-full main-height">
+    <div class="absolute top-16 pt-2 pl-4">
+      <Link to="/">
+        <button class="btn btn-primary btn-util">一覧へ戻る</button>
+      </Link>
     </div>
-  {:else}
-    <NotFound />
-  {/if}
-</section>
+
+    <div class="main-height overflow-y-auto pt-12 pb-60">
+      {#each posts as post}
+        <div class="flex py-5 px-10 border-b-1 hover:bg-gray-100">
+          <div class="text-lg font-bold pr-5">
+            {post.title}
+          </div>
+          <div class="flex-grow" />
+          <button class="btn btn-accent btn-sm rounded-lg" on:click={() => handleDelete(post.pid)}>削除</button>
+        </div>
+      {/each}
+    </div>
+  </section>
+{:else}
+  <NotFound />
+{/if}

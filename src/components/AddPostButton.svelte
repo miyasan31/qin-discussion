@@ -1,12 +1,12 @@
 <script type="ts">
-export let modal: boolean = false;
+import { modal } from '../store';
 const handleModal = () => {
-  modal = !modal;
+  $modal = !$modal;
 };
 </script>
 
 <div class="absolute right-10 bottom-10 mt-4">
-  <button class="btn btn-primary modal-button sm:btn-circle px-3 sm:px-5 rounded-full" on:click={handleModal}
+  <button class="btn btn-secondary modal-button sm:btn-circle px-3 sm:px-5 rounded-full" on:click={handleModal}
     ><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path
         stroke-linecap="round"
