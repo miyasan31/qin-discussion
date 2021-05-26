@@ -7,6 +7,7 @@ export type PostsType = {
 };
 
 export type CommetsType = {
+  cid: string;
   text: string;
   creater_name: string;
   create_time: Object;

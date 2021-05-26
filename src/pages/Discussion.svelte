@@ -17,7 +17,9 @@ const handleTabFin = () => {
 };
 
 const handleFetch = () => {
-  db.collection('posts20210530')
+  db.collection('qin-salon')
+    .doc('20210530')
+    .collection('posts')
     .orderBy('create_time', 'desc')
     .onSnapshot((snapshot) => {
       let finDocs = [];

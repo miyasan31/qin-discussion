@@ -6,14 +6,15 @@ import { name } from '../store';
 
 let comments: CommetsType[] = [];
 let message: CommetsType = {
+  cid: '',
   text: '',
   creater_name: '',
   create_time: {},
 };
 
 const handleFetchComments = () => {
-  db.collection('posts')
-    .doc('slS3B5CyUeWAjczTnxBh')
+  db.collection('qin-salon')
+    .doc('20210530')
     .collection('comments')
     .orderBy('create_time', 'desc')
     .onSnapshot((snapshot) => {
@@ -27,16 +28,21 @@ const handleFetchComments = () => {
 
 const handleSend = () => {
   if (message.text !== '') {
+    const ref = db.collection('qin-salon').doc('20210508').collection('comments').doc();
+    const cid = ref.id;
+    message.cid = cid;
+
     const timestamp = FirebaseTimestamp.now();
     message.create_time = timestamp;
     message.creater_name = $name;
-    db.collection('posts').doc('slS3B5CyUeWAjczTnxBh').collection('comments').doc().set(message);
+    db.collection('qin-salon').doc('20210530').collection('comments').doc().set(message);
     handleReset();
   }
 };
 
 const handleReset = () => {
   message = {
+    cid: '',
     text: '',
     creater_name: '',
     create_time: {},
