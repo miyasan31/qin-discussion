@@ -9,7 +9,9 @@ import { db } from '../firebase/firebase';
 let posts: PostsType[] = [];
 
 const handleFetch = () => {
-  db.collection('posts20210530')
+  db.collection('qin-salon')
+    .doc('20210530')
+    .collection('posts')
     .orderBy('create_time', 'desc')
     .onSnapshot((snapshot) => {
       let docs = [];
@@ -21,7 +23,7 @@ const handleFetch = () => {
 };
 
 const handleDelete = (pid: string) => {
-  db.collection('posts20210530').doc(pid).delete();
+  db.collection('qin-salon').doc('20210530').collection('posts').doc(pid).delete();
 };
 
 onMount(async () => {

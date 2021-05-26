@@ -17,10 +17,11 @@ let post: PostsType = {
 };
 
 const handleFetch = () => {
-  db.collection('posts20210530')
+  db.collection('qin-salon')
+    .doc('20210530')
+    .collection('posts')
     .doc(pid)
-    .get()
-    .then((doc) => {
+    .onSnapshot((doc) => {
       post = doc.data() as PostsType;
       title_size = {
         'text-2xl sm:text-6xl': post.title.length >= 0 && post.title.length < 25,
@@ -37,7 +38,7 @@ const handleChenge = () => {
   let posts = {
     checked: !post.checked,
   };
-  db.collection('posts20210530').doc(pid).set(posts, { merge: true });
+  db.collection('qin-salon').doc('20210530').collection('posts').doc(pid).set(posts, { merge: true });
 };
 
 onMount(async () => {

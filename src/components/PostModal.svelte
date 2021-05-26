@@ -15,7 +15,7 @@ let formData: PostsType = {
 
 const handleAdd = async () => {
   if (formData.title !== '') {
-    const ref = await db.collection('posts20210530').doc();
+    const ref = await db.collection('qin-salon').doc('20210530').collection('posts').doc();
     const pid = ref.id;
     formData.pid = pid;
     const timestamp = FirebaseTimestamp.now();
@@ -23,7 +23,9 @@ const handleAdd = async () => {
     if (formData.creater_name === '') {
       formData.creater_name = '匿名さん';
     }
-    db.collection('posts20210530')
+    db.collection('qin-salon')
+      .doc('20210530')
+      .collection('posts')
       .doc(pid)
       .set(formData, { merge: true })
       .then(() => {
