@@ -52,16 +52,16 @@ onMount(async () => {
     {#if tab}
       {#each yetPosts as post}
         <Link to={`/talking/${post.pid}`}>
-          <div class="title-list">
-            {post.title}
+          <div class="title-list whitespace-pre-line">
+            {post.title.trim()}
           </div>
         </Link>
       {/each}
     {:else}
       {#each finPosts as post}
         <Link to={`/talking/${post.pid}`}>
-          <div class="title-list">
-            {post.title}
+          <div class="title-list whitespace-pre-line">
+            {post.title.trim()}
           </div>
         </Link>
       {/each}

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import type { PostsType, TitleSizeType } from '../models/types';
-import { admin } from '../store';
+import { admin, thread } from '../store';
 import { db } from '../firebase/firebase';
 
 let pid = '';
@@ -71,10 +71,11 @@ onMount(async () => {
         <p
           style="line-height: 1.4;"
           class={clsx(
-            'block font-bold leading-6 text-center mb-5 whitespace-pre-line overflow-scroll bar-hidden',
-            title_size
+            'block font-bold leading-6 mb-5 whitespace-pre-line overflow-scroll bar-hidden',
+            title_size,
+            $thread ? 'text-left md:px-5' : 'text-center md:px-20'
           )}>
-          {post.title}
+          {post.title.trim()}
         </p>
         <div class="flex justify-center">
           <div class="flex items-center justify-center rounded-full    bg-primary py-2 sm:py-3 px-3 sm:px-5">
