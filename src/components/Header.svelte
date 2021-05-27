@@ -11,13 +11,13 @@ const handleThread = () => {
 };
 </script>
 
-<header class="body-font bg-gradient-to-r from-primary-focus to-primary py-3 px-4 border-b-1">
+<header class="body-font bg-gradient-to-r from-primary-focus to-primary py-2.5 px-2 md:py-3 md:px-4 border-b-1">
   <div class="flex justify-center items-center">
     <Link to="/">
       <span class="flex title-font items-center text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-7 w-7 text-secondary transform rotate-12"
+          class="h-6 w-6 md:h-7 md:w-7 text-secondary transform rotate-12"
           viewBox="0 0 20 20"
           fill="currentColor">
           <path
@@ -25,19 +25,19 @@ const handleThread = () => {
             d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
             clip-rule="evenodd" />
         </svg>
-        <span class="ml-1 text-xl font-bold">Qin Discussion</span>
+        <span class="ml-1 text-xl md:text-2xl font-bold">Qin Discussion</span>
       </span>
     </Link>
 
     <div class="flex-grow" />
 
-    <div class="flex bg-white rounded-full px-1 py-1">
-      <div class="px-1">
+    <div class="flex bg-white rounded-full px-1 md:px-1 pt-1.5 pb-1 md:py-1">
+      <div class="px-0.5 md:px-1">
         <div data-tip="お題投稿" class="tooltip tooltip-bottom tooltip-primary">
-          <button class="btn btn-primary btn-circle btn-sm" on:click={handleModal}
+          <button class="btn btn-primary btn-circle btn-xs md:btn-sm" on:click={handleModal}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="h-4 w-4 md:h-5 md:w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor">
@@ -51,12 +51,12 @@ const handleThread = () => {
         </div>
       </div>
 
-      <div class="px-1">
+      <div class="px-0.5 md:px-1">
         <div data-tip="スレッド" class="tooltip tooltip-bottom tooltip-natural">
-          <button class="btn btn-natural btn-circle btn-sm" on:click={handleThread}
+          <button class="btn btn-natural btn-circle btn-xs md:btn-sm" on:click={handleThread}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="h-4 w-4 md:h-5 md:w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor">
@@ -71,13 +71,13 @@ const handleThread = () => {
       </div>
 
       {#if $admin}
-        <div class="px-1">
+        <div class="px-0.5 md:px-1">
           <div data-tip="管理者ページ" class="tooltip tooltip-bottom tooltip-secondary">
             <Link to="/admin">
-              <button class="btn btn-secondary btn-circle btn-sm"
+              <button class="btn btn-secondary btn-circle btn-xs md:btn-sm"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
+                  class="h-4 w-4 md:h-5 md:w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor">

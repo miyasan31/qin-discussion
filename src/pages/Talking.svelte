@@ -47,8 +47,8 @@ onMount(async () => {
 });
 </script>
 
-<section class="w-full main-height">
-  <div class="absolute top-16 pt-2 pl-4 flex">
+<section class="w-full">
+  <div class="absolute top-14 md:top-16 pt-3 pl-4 flex">
     <Link to="/">
       <button class="btn btn-primary btn-util">一覧へ戻る</button>
     </Link>

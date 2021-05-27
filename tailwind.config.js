@@ -13,6 +13,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    flex: {
+      1: '1 1 0%',
+      2: '2 2 0%',
+    },
   },
   variants: {
     extend: {},
