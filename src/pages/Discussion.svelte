@@ -42,11 +42,12 @@ onMount(async () => {
 });
 </script>
 
-<section class="relative">
+<section class="w-full">
   <div class="flex cursor-pointer">
     <div class="tab-base" class:tab-active={tab} on:click={handleTabYet}>まだ話してない</div>
     <div class="tab-base" class:tab-active={!tab} on:click={handleTabFin}>もう話した</div>
   </div>
+
   <div class="main-h overflow-y-auto pb-60">
     {#if tab}
       {#each yetPosts as post}

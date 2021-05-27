@@ -10,18 +10,16 @@ import { thread } from './store';
     <div class="top-0 z-50">
       <Header />
     </div>
-    <div class:flex={$thread}>
-      <div class:flex-2={$thread}>
+    <div class={$thread ? 'flex' : ''}>
+      <div class={$thread ? 'hidden md:flex-2 md:block' : 'w-full'}>
         <Route path="/"><Discussion /></Route>
         <Route path="/talking/:id"><Talking /></Route>
         <Route path="/admin"><Admin /></Route>
         <Route path="*"><NotFound /></Route>
       </div>
-      {#if $thread}
-        <div class:flex-1={$thread}>
-          <Thread />
-        </div>
-      {/if}
+      <div class={$thread ? 'w-full md:flex-1' : 'hidden'}>
+        <Thread />
+      </div>
     </div>
   </div>
 
