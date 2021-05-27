@@ -51,15 +51,6 @@
 .bar-hidden::-webkit-scrollbar {
   display: none;
 }
-.flex-2 {
-  flex: 2;
-}
-.flex-3 {
-  flex: 3;
-}
-.flex-4 {
-  flex: 4;
-}
 </style>
 
 <!-- light (default)
