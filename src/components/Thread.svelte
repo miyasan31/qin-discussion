@@ -2,7 +2,7 @@
 import { onMount } from 'svelte';
 import type { CommetsType } from '../models/types';
 import { db, FirebaseTimestamp } from '../firebase/firebase';
-import { name, thread } from '../store';
+import { name, thread, event_name } from '../store';
 
 let comments: CommetsType[] = [];
 let message: CommetsType = {
@@ -14,7 +14,7 @@ let message: CommetsType = {
 
 const handleFetchComments = () => {
   db.collection('qin-salon')
-    .doc('20210530')
+    .doc($event_name)
     .collection('comments')
     .orderBy('create_time', 'desc')
     .onSnapshot((snapshot) => {
@@ -28,14 +28,14 @@ const handleFetchComments = () => {
 
 const handleSend = () => {
   if (message.text !== '') {
-    const ref = db.collection('qin-salon').doc('20210508').collection('comments').doc();
+    const ref = db.collection('qin-salon').doc($event_name).collection('comments').doc();
     const cid = ref.id;
     message.cid = cid;
 
     const timestamp = FirebaseTimestamp.now();
     message.create_time = timestamp;
     message.creater_name = $name;
-    db.collection('qin-salon').doc('20210530').collection('comments').doc().set(message);
+    db.collection('qin-salon').doc($event_name).collection('comments').doc().set(message);
     handleReset();
   }
 };

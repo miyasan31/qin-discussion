@@ -2,7 +2,7 @@
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import { NotFound } from '../pages';
-import { admin, thread } from '../store';
+import { admin, thread, event_name } from '../store';
 import type { PostsType } from '../models/types';
 import { db } from '../firebase/firebase';
 
@@ -10,7 +10,7 @@ let posts: PostsType[] = [];
 
 const handleFetch = () => {
   db.collection('qin-salon')
-    .doc('20210530')
+    .doc($event_name)
     .collection('posts')
     .orderBy('create_time', 'desc')
     .onSnapshot((snapshot) => {
@@ -23,7 +23,7 @@ const handleFetch = () => {
 };
 
 const handleDelete = (pid: string) => {
-  db.collection('qin-salon').doc('20210530').collection('posts').doc(pid).delete();
+  db.collection('qin-salon').doc($event_name).collection('posts').doc(pid).delete();
 };
 
 onMount(async () => {

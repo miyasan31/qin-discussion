@@ -2,7 +2,7 @@
 import type { PostsType } from '../models/types';
 import { db, FirebaseTimestamp } from '../firebase/firebase';
 import { TextInput } from '../components';
-import { modal } from '../store';
+import { modal, event_name } from '../store';
 
 let error: boolean = false;
 let formData: PostsType = {
@@ -15,7 +15,7 @@ let formData: PostsType = {
 
 const handleAdd = async () => {
   if (formData.title !== '') {
-    const ref = await db.collection('qin-salon').doc('20210530').collection('posts').doc();
+    const ref = await db.collection('qin-salon').doc($event_name).collection('posts').doc();
     const pid = ref.id;
     formData.pid = pid;
     const timestamp = FirebaseTimestamp.now();
@@ -24,7 +24,7 @@ const handleAdd = async () => {
       formData.creater_name = '匿名さん';
     }
     db.collection('qin-salon')
-      .doc('20210530')
+      .doc($event_name)
       .collection('posts')
       .doc(pid)
       .set(formData, { merge: true })

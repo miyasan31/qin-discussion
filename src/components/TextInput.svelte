@@ -14,14 +14,12 @@ export let error: boolean;
     class:error-input={error} />
 {:else if type === 'name'}
   <input
-    autofocus
     bind:value
     type="text"
     placeholder="お名前（未入力の場合は匿名参加）"
     class="input input-primary input-bordered w-full" />
 {:else if type === 'password'}
   <input
-    autofocus
     bind:value
     type="password"
     placeholder="管理者パスワード"

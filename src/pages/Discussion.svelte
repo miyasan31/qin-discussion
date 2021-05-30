@@ -3,7 +3,7 @@ import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import type { PostsType } from '../models/types';
 import { db } from '../firebase/firebase';
-import { modal } from '../store';
+import { modal, event_name } from '../store';
 
 let tab: boolean = true;
 let finPosts: PostsType[] = [];
@@ -18,7 +18,7 @@ const handleTabFin = () => {
 
 const handleFetch = () => {
   db.collection('qin-salon')
-    .doc('20210530')
+    .doc($event_name)
     .collection('posts')
     .orderBy('create_time', 'desc')
     .onSnapshot((snapshot) => {
@@ -37,7 +37,7 @@ const handleFetch = () => {
 };
 
 onMount(async () => {
-  $modal = false;
+  modal.update((store_modal) => (store_modal = false));
   await handleFetch();
 });
 </script>

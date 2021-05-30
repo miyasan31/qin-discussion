@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import type { PostsType, TitleSizeType } from '../models/types';
-import { admin, thread } from '../store';
+import { admin, thread, event_name } from '../store';
 import { db } from '../firebase/firebase';
 
 let pid = '';
@@ -18,7 +18,7 @@ let post: PostsType = {
 
 const handleFetch = (id) => {
   db.collection('qin-salon')
-    .doc('20210530')
+    .doc($event_name)
     .collection('posts')
     .doc(id)
     .onSnapshot((doc) => {
@@ -38,7 +38,7 @@ const handleChenge = () => {
   let posts = {
     checked: !post.checked,
   };
-  db.collection('qin-salon').doc('20210530').collection('posts').doc(pid).set(posts, { merge: true });
+  db.collection('qin-salon').doc($event_name).collection('posts').doc(pid).set(posts, { merge: true });
 };
 
 onMount(async () => {
