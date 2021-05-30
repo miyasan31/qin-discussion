@@ -16,15 +16,15 @@ const handleTabFin = () => {
 
 const handleJoin = () => {
   if (userName === '') {
-    $name = '匿名さん';
+    name.update((store_name) => (store_name = '匿名さん'));
   } else {
-    $name = userName;
+    name.update((store_name) => (store_name = userName));
   }
 };
 const handleAdmin = () => {
   if (password === 'miyasanismiya3') {
-    $name = '管理者';
-    $admin = true;
+    name.update((store_name) => (store_name = '管理者'));
+    admin.update((store_admin) => (store_admin = true));
   } else {
     error = true;
   }

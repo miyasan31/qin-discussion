@@ -27,7 +27,7 @@ const handleDelete = (pid: string) => {
 };
 
 onMount(async () => {
-  $thread = false;
+  thread.update((store_thread) => (store_thread = false));
   if ($admin) {
     await handleFetch();
   }

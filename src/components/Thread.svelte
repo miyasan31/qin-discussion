@@ -41,7 +41,7 @@ const handleSend = () => {
 };
 
 const handleToggle = () => {
-  $thread = !$thread;
+  thread.update((store_thread) => !store_thread);
 };
 
 const handleReset = () => {

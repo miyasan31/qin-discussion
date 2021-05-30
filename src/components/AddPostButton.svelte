@@ -1,7 +1,7 @@
 <script type="ts">
 import { modal } from '../store';
 const handleModal = () => {
-  $modal = !$modal;
+  modal.update((store_modal) => !store_modal);
 };
 </script>
 

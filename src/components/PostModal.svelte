@@ -46,12 +46,12 @@ const handleReset = () => {
     create_time: {},
     checked: false,
   };
-  $modal = false;
+  modal.update((store_modal) => (store_modal = false));
   error = false;
 };
 
 const handleClose = () => {
-  $modal = false;
+  modal.update((store_modal) => (store_modal = false));
 };
 </script>
 

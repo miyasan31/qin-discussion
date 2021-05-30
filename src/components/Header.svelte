@@ -4,10 +4,10 @@ import { admin } from '../store';
 import { thread, modal } from '../store';
 
 const handleModal = () => {
-  $modal = !$modal;
+  modal.update((store_modal) => !store_modal);
 };
 const handleThread = () => {
-  $thread = !$thread;
+  thread.update((store_thread) => !store_thread);
 };
 </script>
 
