@@ -16,11 +16,11 @@ let post: PostsType = {
   checked: false,
 };
 
-const handleFetch = () => {
+const handleFetch = (id) => {
   db.collection('qin-salon')
     .doc('20210530')
     .collection('posts')
-    .doc(pid)
+    .doc(id)
     .onSnapshot((doc) => {
       post = doc.data() as PostsType;
       title_size = {
@@ -43,7 +43,7 @@ const handleChenge = () => {
 
 onMount(async () => {
   pid = await window.location.pathname.split('/talking/')[1];
-  await handleFetch();
+  await handleFetch(pid);
 });
 </script>
 
