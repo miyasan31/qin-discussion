@@ -1,104 +1,38 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# Qin Salon パネルディスカッションアプリ
 
----
+## 使用技術
+- Svelte(TypeScript)
+- Firebase(Firesore)
+- TailwindCSS(plugin:DaisyUI)
+- Vercel(deploy)
 
-# svelte-tailwindcss-template
+## 要件定義
+<img width="1131" alt="スクリーンショット 2021-05-31 10 35 21" src="https://user-images.githubusercontent.com/71614432/120127984-e8b41480-c1fb-11eb-844e-d65bb697ba57.png">
 
-This is a fork of Svelte's project template to enable usage of Tailwindcss. Refer to https://github.com/sveltejs/template for more info.
+## 仕様
+- ログイン
+  - 視聴者/管理者を選択
+  - 視聴者は匿名/記名を選択
+  - 管理者はパスワードを入力して認証
+- 右上のボタン類
+  - お題投稿モーダル表示（匿名/記名を選択できる）
+  - スレッド画面をトグル（イベント毎に、お題を跨いだコメントができる）
+  - 管理者ページへ遷移（お題削除機能）
+- メイン画面
+  - タブで終わった/終わってないを切替、話しているお題はリストをクリックして表示
+  - 話しているお題の画面から終了/取消を変更（管理者）
+  - スレッド機能（メッセージに全角の「？」を入れると質問として強調される）
+- レスポンシブ対応
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sarioglu/svelte-tailwindcss-template svelte-app
-cd svelte-app
-```
-
-_Note that you will need to have [Node.js](https://nodejs.org) installed._
-
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
-```
-
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+### イメージ  
+**画面共有者**：スレッドを開き、サイト全体を画面共有  
+  <img width="1440" alt="スクリーンショット 2021-05-31 10 54 25" src="https://user-images.githubusercontent.com/71614432/120129251-945e6400-c1fe-11eb-996c-d53def44e241.png">
+    
+**視聴者**：Zoomの画面にサイトを重ねて表示/スマホからスレッドを開いて参加
+![スクリーンショット 2021-05-30 21 00 15](https://user-images.githubusercontent.com/71614432/120128220-7abc1d00-c1fc-11eb-8636-69a2d4b4a2aa.png)
 
 
-## Single-page app mode
 
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+## 今後やりたいこと
+- 管理者ページをダッシュボード化して、イベントの追加ができるようにする
+- 
