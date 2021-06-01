@@ -47,6 +47,7 @@
     "daisyui": "^1.1.1",
     "firebase": "^8.4.3",
     "node-sass": "^5.0.0",
+    "postcss-nesting": "^8.0.1",
     "sass": "^1.32.12",
     "sirv-cli": "^1.0.0",
     "smelte": "^1.1.5",
