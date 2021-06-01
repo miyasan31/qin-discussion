@@ -3,10 +3,11 @@ import clsx from 'clsx';
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import type { PostsType, TitleSizeType } from '../models/types';
-import { admin, thread, event_name } from '../store';
+import { admin, thread, event } from '../store';
 import { db } from '../firebase/firebase';
+import type { DocumentType } from '../firebase/firebase';
 
-let pid = '';
+let pid: string = '';
 let title_size: TitleSizeType;
 let post: PostsType = {
   pid: '',
@@ -16,12 +17,12 @@ let post: PostsType = {
   checked: false,
 };
 
-const handleFetch = (id) => {
+const handleFetch = (id: string): void => {
   db.collection('qin-salon')
-    .doc($event_name)
+    .doc($event)
     .collection('posts')
     .doc(id)
-    .onSnapshot((doc) => {
+    .onSnapshot((doc: DocumentType) => {
       post = doc.data() as PostsType;
       title_size = {
         'text-2xl sm:text-6xl': post.title.length >= 0 && post.title.length < 25,
@@ -34,29 +35,32 @@ const handleFetch = (id) => {
     });
 };
 
-const handleChenge = () => {
+const handleChenge = (): void => {
   let posts = {
     checked: !post.checked,
   };
-  db.collection('qin-salon').doc($event_name).collection('posts').doc(pid).set(posts, { merge: true });
+  db.collection('qin-salon').doc($event).collection('posts').doc(pid).set(posts, { merge: true });
 };
 
-onMount(async () => {
-  pid = await window.location.pathname.split('/talking/')[1];
-  await handleFetch(pid);
-});
+onMount(
+  async (): Promise<void> => {
+    pid = await window.location.pathname.split('/talking/')[1];
+    await handleFetch(pid);
+  }
+);
 </script>
 
 <section class="w-full">
   <div class="absolute top-14 md:top-16 pt-3 pl-4 flex">
     <Link to="/">
-      <button class="btn btn-primary btn-util">一覧へ戻る</button>
+      <button class="btn btn-primary btn-sm mr-2">一覧へ戻る</button>
     </Link>
     {#if $admin}
       {#if post.checked}
-        <button class="btn btn-accent btn-util" disabled={$admin ? false : true} on:click={handleChenge}>取消</button>
+        <button class="btn btn-accent btn-sm mr-2" disabled={$admin ? false : true} on:click={handleChenge}
+          >取消</button>
       {:else}
-        <button class="btn btn-secondary btn-util" disabled={$admin ? false : true} on:click={handleChenge}
+        <button class="btn btn-secondary btn-sm mr-2" disabled={$admin ? false : true} on:click={handleChenge}
           >終了</button>
       {/if}
     {/if}
@@ -75,7 +79,7 @@ onMount(async () => {
             title_size,
             $thread ? 'text-left md:px-5' : 'text-center md:px-20'
           )}>
-          {post.title.trim()}
+          {post.title}
         </p>
         <div class="flex justify-center">
           <div class="flex items-center justify-center rounded-full    bg-primary py-2 sm:py-3 px-3 sm:px-5">

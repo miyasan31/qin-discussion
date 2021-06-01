@@ -1,6 +1,6 @@
 <script type="ts">
 import { modal } from '../store';
-const handleModal = () => {
+const handleModal = (): void => {
   modal.update((store_modal) => !store_modal);
 };
 </script>

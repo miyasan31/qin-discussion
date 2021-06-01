@@ -1,14 +1,31 @@
 <script lang="ts">
+import { onMount } from 'svelte';
 import { Link } from 'svelte-routing';
-import { admin } from '../store';
-import { thread, modal } from '../store';
+import { admin, thread, modal, event } from '../store';
 
-const handleModal = () => {
+let disabled: boolean = false;
+const handleModal = (): void => {
   modal.update((store_modal) => !store_modal);
 };
-const handleThread = () => {
+const handleThread = (): void => {
   thread.update((store_thread) => !store_thread);
 };
+
+onMount(() => {
+  // 今後timestampと比較
+  function formatDate(dt) {
+    var y = dt.getFullYear();
+    var m = ('00' + (dt.getMonth() + 1)).slice(-2);
+    var d = ('00' + dt.getDate()).slice(-2);
+    return y + m + d;
+  }
+  const data = formatDate(new Date());
+  if (parseInt($event, 10) < parseInt(data, 10)) {
+    disabled = true;
+  } else {
+    disabled = false;
+  }
+});
 </script>
 
 <header class="body-font bg-gradient-to-r from-primary-focus to-primary py-2.5 px-2 md:py-3 md:px-4 border-b-1">
@@ -34,7 +51,7 @@ const handleThread = () => {
     <div class="flex bg-white rounded-full px-1 md:px-1 pt-1.5 pb-1 md:py-1">
       <div class="px-0.5 md:px-1">
         <div data-tip="お題投稿" class="tooltip tooltip-bottom tooltip-primary">
-          <button class="btn btn-primary btn-circle btn-xs md:btn-sm" on:click={handleModal}
+          <button class="btn btn-primary btn-circle btn-xs md:btn-sm" {disabled} on:click={handleModal}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-4 w-4 md:h-5 md:w-5"

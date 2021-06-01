@@ -1,28 +1,28 @@
 <script lang="ts">
-export let type: 'text' | 'name' | 'password';
+export let text_type: 'textarea' | 'input';
+export let type: 'text' | 'password';
 export let value: string;
+export let placeholder: string;
 export let error: boolean;
+
+const typeAction = (node) => {
+  node.type = type;
+};
 </script>
 
-{#if type === 'text'}
+{#if text_type === 'textarea'}
   <textarea
     bind:value
     type="text"
     rows="3"
-    placeholder="お題を入力"
+    {placeholder}
     class="input input-primary input-bordered w-full h-32 sm:h-40 resize-none mb-2.5"
     class:error-input={error} />
-{:else if type === 'name'}
+{:else if text_type === 'input'}
   <input
+    use:typeAction
     bind:value
-    type="text"
-    placeholder="お名前（未入力の場合は匿名参加）"
-    class="input input-primary input-bordered w-full" />
-{:else if type === 'password'}
-  <input
-    bind:value
-    type="password"
-    placeholder="管理者パスワード"
+    {placeholder}
     class="input input-primary input-bordered w-full"
-    class:error-input={error} />
+    class:bg-red-200={error} />
 {/if}
