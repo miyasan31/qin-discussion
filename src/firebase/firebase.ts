@@ -15,5 +15,9 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
-export const FirebaseTimestamp = firebase.firestore.Timestamp;
 export const strage = firebase.storage();
+export const FirebaseTimestamp = firebase.firestore.Timestamp;
+
+export type SnapshotType = firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>;
+export type DocumentsType = firebase.firestore.DocumentChange<firebase.firestore.DocumentData>;
+export type DocumentType = firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>;

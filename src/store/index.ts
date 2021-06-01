@@ -1,7 +1,10 @@
 import { writable } from 'svelte/store';
+import type { PostsType } from '../models/types';
 
-export const name = writable('');
-export const admin = writable(false);
-export const thread = writable(false);
-export const modal = writable(false);
-export const event_name = writable('');
+export const name = writable<string>('');
+export const admin = writable<boolean>(false);
+export const thread = writable<boolean>(false);
+export const modal = writable<boolean>(false);
+export const event = writable<string>('');
+export const finPosts = writable<PostsType[]>([]);
+export const yetPosts = writable<PostsType[]>([]);

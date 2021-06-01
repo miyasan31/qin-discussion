@@ -1,3 +1,9 @@
+export type EventType = {
+  eid: string;
+  event_title: string;
+  event_date: {};
+};
+
 export type PostsType = {
   pid: string;
   title: string;

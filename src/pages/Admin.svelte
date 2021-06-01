@@ -2,43 +2,36 @@
 import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import { NotFound } from '../pages';
-import { admin, thread, event_name } from '../store';
+import { admin, thread, event, finPosts, yetPosts } from '../store';
 import type { PostsType } from '../models/types';
 import { db } from '../firebase/firebase';
 
 let posts: PostsType[] = [];
 
-const handleFetch = () => {
-  db.collection('qin-salon')
-    .doc($event_name)
-    .collection('posts')
-    .orderBy('create_time', 'desc')
-    .onSnapshot((snapshot) => {
-      let docs = [];
-      snapshot.forEach((doc) => {
-        docs.push({ ...doc.data() });
-      });
-      posts = [...docs];
-    });
+const handleFetch = (): void => {
+  posts = [...$yetPosts, ...$finPosts];
 };
 
-const handleDelete = (pid: string) => {
-  db.collection('qin-salon').doc($event_name).collection('posts').doc(pid).delete();
+const handleDelete = (pid: string): void => {
+  db.collection('qin-salon').doc($event).collection('posts').doc(pid).delete();
+  posts = posts.filter((post) => post.pid !== pid);
 };
 
-onMount(async () => {
-  thread.update((store_thread) => (store_thread = false));
-  if ($admin) {
-    await handleFetch();
+onMount(
+  async (): Promise<void> => {
+    thread.update((store_thread) => (store_thread = false));
+    if ($admin) {
+      await handleFetch();
+    }
   }
-});
+);
 </script>
 
 {#if $admin}
   <section class="w-full">
     <div class="absolute top-14 md:top-16 pt-3 pl-4">
       <Link to="/">
-        <button class="btn btn-primary btn-util">一覧へ戻る</button>
+        <button class="btn btn-primary btn-sm mr-2">一覧へ戻る</button>
       </Link>
     </div>
 
