@@ -20,7 +20,7 @@ export type CommetsType = {
 };
 
 export type TitleSizeType = {
-  'text-2xl sm:text-6xl': boolean;
+  'text-2xl sm:text-6xl text-center': boolean;
   'text-2xl sm:text-5xl': boolean;
   'text-2xl sm:text-4xl': boolean;
   'text-xl sm:text-3xl': boolean;

@@ -25,7 +25,7 @@ const handleFetch = (id: string): void => {
     .onSnapshot((doc: DocumentType) => {
       post = doc.data() as PostsType;
       title_size = {
-        'text-2xl sm:text-6xl': post.title.length >= 0 && post.title.length < 25,
+        'text-2xl sm:text-6xl text-center': post.title.length >= 0 && post.title.length < 25,
         'text-2xl sm:text-5xl': post.title.length >= 25 && post.title.length < 50,
         'text-2xl sm:text-4xl': post.title.length >= 50 && post.title.length < 75,
         'text-xl sm:text-3xl': post.title.length >= 70 && post.title.length < 100,
@@ -76,8 +76,8 @@ onMount(
           style="line-height: 1.4;"
           class={clsx(
             'block font-bold leading-6 mb-5 whitespace-pre-line overflow-scroll bar-hidden',
-            title_size,
-            $thread ? 'text-left md:px-5' : 'text-center md:px-20'
+            $thread ? 'text-left md:px-5' : 'text-center md:px-20',
+            title_size
           )}>
           {post.title}
         </p>
