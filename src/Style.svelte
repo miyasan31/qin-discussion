@@ -44,6 +44,9 @@
 }
 .chat-msg {
   width: fit-content;
+  height: fit-content;
+  max-width: 100%;
+  word-break: break-all;
 }
 .resize-label::-webkit-resizer {
   display: none;

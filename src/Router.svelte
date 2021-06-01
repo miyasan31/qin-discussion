@@ -12,7 +12,7 @@ import { thread } from './store';
         <Header />
       </div>
       <div class={$thread ? 'flex' : ''}>
-        <div class={$thread ? 'hidden md:flex-2 md:block' : 'w-full'}>
+        <div class={$thread ? 'hidden md:block md:flex-2' : 'w-full'}>
           <Route path="/"><Discussion /></Route>
           <Route path="/talking/:id"><Talking /></Route>
           <Route path="/admin"><Admin /></Route>
