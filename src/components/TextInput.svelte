@@ -1,9 +1,10 @@
 <script lang="ts">
 export let text_type: 'textarea' | 'input';
-export let type: 'text' | 'password';
+export let type: 'text' | 'password' | 'date';
+export let color: 'primary' | 'secondary' | 'natural' | 'accent';
 export let value: string;
 export let placeholder: string;
-export let error: boolean;
+export let error: true | false;
 
 const typeAction = (node) => {
   node.type = type;
@@ -16,13 +17,13 @@ const typeAction = (node) => {
     type="text"
     rows="3"
     {placeholder}
-    class="input input-primary input-bordered w-full h-32 sm:h-40 resize-none mb-2.5"
+    class={`input input-${color} input-bordered w-full h-32 sm:h-40 resize-none mb-2.5 shadow-sm`}
     class:error-input={error} />
 {:else if text_type === 'input'}
   <input
     use:typeAction
     bind:value
     {placeholder}
-    class="input input-primary input-bordered w-full"
+    class={`input input-${color} input-bordered w-full shadow-sm`}
     class:bg-red-200={error} />
 {/if}
