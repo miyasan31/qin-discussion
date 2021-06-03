@@ -4,6 +4,7 @@ import { TextInput } from '../components';
 import { admin, name, event } from '../store';
 import { navigate } from 'svelte-routing';
 import { db } from '../firebase/firebase';
+import { fly } from 'svelte/transition';
 
 let tab: boolean = false;
 let error: boolean = false;
@@ -35,7 +36,11 @@ const handleJoin = (): void => {
 
 const handleAdmin = (): void => {
   if (password === 'miyasanismiya3') {
-    name.update((store_name) => (store_name = '管理者'));
+    if (userName === '') {
+      name.update((store_name) => (store_name = 'しまぶー'));
+    } else {
+      name.update((store_name) => (store_name = userName));
+    }
     admin.update((store_admin) => (store_admin = true));
     event.update((store_event) => (store_event = select_event));
     navigate('/', { replace: true });
@@ -79,7 +84,7 @@ onMount(async () => {
   </div>
 
   <div class="fixed z-10 card w-10/12 sm:w-8/12 md:w-5/12 bg-gray-100 shadow-xl">
-    <div class="w-full flex cursor-pointer bg-white">
+    <div class="w-full flex cursor-pointer bg-white shadow">
       <!-- 冗長クラス -->
       <div
         class={tab
@@ -103,7 +108,7 @@ onMount(async () => {
         <div class="p-3 pl-4 w-full rounded-lg bg-white text-primary animate-pulse">イベントを取得中...</div>
       {:then result}
         <select
-          class="select select-bordered select-primary w-full"
+          class="select select-bordered select-primary w-full shadow-sm"
           bind:value={select_event}
           on:select={handleSelect}
           autofocus>
@@ -123,23 +128,43 @@ onMount(async () => {
         <TextInput
           text_type="input"
           type="text"
+          color="primary"
           bind:value={userName}
           bind:error
           placeholder="お名前（未入力の場合は匿名参加）" />
       {:else}
-        <TextInput text_type="input" type="password" bind:value={password} bind:error placeholder="管理者パスワード" />
+        <TextInput
+          text_type="input"
+          type="password"
+          color="primary"
+          bind:value={password}
+          bind:error
+          placeholder="管理者パスワード" />
+        {#if password === 'miyasanismiya3'}
+          <div class="pt-5" in:fly={{ y: 50, duration: 500 }}>
+            <TextInput
+              text_type="input"
+              type="text"
+              color="primary"
+              bind:value={userName}
+              bind:error
+              placeholder="お名前（未入力の場合はしまぶー）" />
+          </div>
+        {/if}
       {/if}
       <!-- class:hidden={boolean}で切り替えパターン -->
       <div class="flex justify-end pt-5">
         <button
           class="btn btn-primary"
           class:hidden={tab}
+          class:shadow={select_event === '' ? false : true}
           disabled={select_event !== '' ? false : true}
           on:click={handleJoin}>参加する</button>
         <button
           class="btn btn-primary"
+          class:shadow={password !== 'miyasanismiya3' ? false : true}
           class:hidden={!tab}
-          disabled={password === 'miyasanismiya3' ? false : true}
+          disabled={select_event !== '' && password === 'miyasanismiya3' ? false : true}
           on:click={handleAdmin}>主催する</button>
       </div>
     </div>
