@@ -170,7 +170,7 @@ onMount(
               </span>
 
               <div class="mt-5">
-                <div class="text-accent text-lg font-semibold text-center pb-4">この内容で追加しますか？</div>
+                <div class="text-accent text-lg text-center pb-4">この内容で追加しますか？</div>
 
                 <span class="text-gray-500 text-sm">イベント名</span>
                 <p class="chat-msg pl-1 text-xl font-semibold whitespace-pre-line">{title}</p>
@@ -179,7 +179,7 @@ onMount(
                 <p class="pl-1 text-xl font-semibold">{event_date}</p>
               </div>
 
-              <div class="flex flex-col gap-3">
+              <div class="flex flex-col gap-3 mt-3">
                 <button class="btn btn-primary btn-wide shadow" on:click={handleAdd}>追加</button>
                 <button class="btn btn-natural btn-wide shadow" on:click={handleClear2}>取消</button>
               </div>
