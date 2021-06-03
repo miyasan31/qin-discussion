@@ -65,6 +65,18 @@ const handleAdd = async () => {
 };
 
 const handleClear1 = () => {
+  toast.push(`
+        <div class="flex items-center justify-center">
+          <div class="flex-auto flex items-center mr-2 text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold">イベントを追加しました</div>
+          </div>
+        </div>
+      `);
   title = '';
   event_date = '';
 };
@@ -126,31 +138,32 @@ onMount(
                     clip-rule="evenodd" />
                 </svg>Qin Salon</span>
 
-              <div class="w-full mt-5">
-                <TextInput
-                  text_type="input"
-                  type="text"
-                  color="secondary"
-                  placeholder="イベント名を入力"
-                  bind:value={title}
-                  error={false} />
-              </div>
+              <div class="flex flex-col gap-y-3 mt-4">
+                <div class="w-full">
+                  <TextInput
+                    text_type="input"
+                    type="text"
+                    color="secondary"
+                    placeholder="イベント名を入力"
+                    bind:value={title}
+                    error={false} />
+                </div>
 
-              <div class="w-full mt-3">
-                <TextInput
-                  text_type="input"
-                  type="date"
-                  color="secondary"
-                  placeholder="イベント名を入力"
-                  bind:value={event_date}
-                  bind:error />
-              </div>
+                <div class="w-full">
+                  <TextInput
+                    text_type="input"
+                    type="date"
+                    color="secondary"
+                    placeholder="イベント名を入力"
+                    bind:value={event_date}
+                    bind:error />
+                </div>
 
-              <div class="flex flex-col gap-3 mt-3">
                 <button
                   class="btn btn-secondary btn-wide shadow"
                   disabled={!error && title.trim() !== '' && event_date !== '' ? false : true}
                   on:click={handleCheck}>確認</button>
+
                 <button class="btn btn-natural btn-wide shadow" on:click={handleClear1}>クリア</button>
               </div>
             </div>
@@ -169,17 +182,19 @@ onMount(
                 </svg>Qin Salon
               </span>
 
-              <div class="mt-5">
-                <div class="text-accent text-lg text-center pb-4">この内容で追加しますか？</div>
+              <div class="flex flex-col gap-y-3 mt-4">
+                <div class="text-accent text-lg text-center">この内容で追加しますか？</div>
 
-                <span class="text-gray-500 text-sm">イベント名</span>
-                <p class="chat-msg pl-1 text-xl font-semibold whitespace-pre-line">{title}</p>
+                <div>
+                  <div class="text-gray-500 text-sm">イベント名</div>
+                  <div class="chat-msg pl-1 text-xl font-semibold whitespace-pre-line">{title}</div>
+                </div>
 
-                <span class="text-gray-500 text-sm">開催日</span>
-                <p class="pl-1 text-xl font-semibold">{event_date}</p>
-              </div>
+                <div>
+                  <div class="text-gray-500 text-sm">開催日</div>
+                  <div class="pl-1 text-xl font-semibold">{event_date}</div>
+                </div>
 
-              <div class="flex flex-col gap-3 mt-3">
                 <button class="btn btn-primary btn-wide shadow" on:click={handleAdd}>追加</button>
                 <button class="btn btn-natural btn-wide shadow" on:click={handleClear2}>取消</button>
               </div>
