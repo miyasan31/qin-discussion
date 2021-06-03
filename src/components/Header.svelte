@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 import { Link } from 'svelte-routing';
-import { admin, thread, modal, event } from '../store';
+import { admin, thread, modal, event, sort_asc } from '../store';
 
 let disabled: boolean = false;
 const handleModal = (): void => {
@@ -10,7 +10,9 @@ const handleModal = (): void => {
 const handleThread = (): void => {
   thread.update((store_thread) => !store_thread);
 };
-
+const handleSort = () => {
+  sort_asc.update((store_sort_asc) => (store_sort_asc = !store_sort_asc));
+};
 onMount(() => {
   // 今後timestampと比較
   function formatDate(dt) {
@@ -28,7 +30,8 @@ onMount(() => {
 });
 </script>
 
-<header class="body-font bg-gradient-to-r from-primary-focus to-primary py-2.5 px-2 md:py-3 md:px-4 border-b-1">
+<header
+  class="relative z-50 body-font bg-gradient-to-r from-primary-focus to-primary py-2.5 px-2 md:py-3 md:px-5 shadow">
   <div class="flex justify-center items-center">
     <Link to="/">
       <span class="flex title-font items-center text-white">
@@ -48,10 +51,10 @@ onMount(() => {
 
     <div class="flex-grow" />
 
-    <div class="flex bg-white rounded-full px-1 md:px-1 pt-1.5 pb-1 md:py-1">
+    <div class="flex bg-white rounded-full px-1 md:px-1 pt-1.5 pb-1 md:py-1 shadow">
       <div class="px-0.5 md:px-1">
         <div data-tip="お題投稿" class="tooltip tooltip-bottom tooltip-primary">
-          <button class="btn btn-primary btn-circle btn-xs md:btn-sm" {disabled} on:click={handleModal}
+          <button class="btn btn-primary btn-circle btn-xs md:btn-sm shadow" {disabled} on:click={handleModal}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-4 w-4 md:h-5 md:w-5"
@@ -70,7 +73,7 @@ onMount(() => {
 
       <div class="px-0.5 md:px-1">
         <div data-tip="スレッド" class="tooltip tooltip-bottom tooltip-natural">
-          <button class="btn btn-natural btn-circle btn-xs md:btn-sm" on:click={handleThread}
+          <button class="btn btn-natural btn-circle btn-xs md:btn-sm shadow" on:click={handleThread}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-4 w-4 md:h-5 md:w-5"
@@ -87,11 +90,45 @@ onMount(() => {
         </div>
       </div>
 
+      <div class="px-0.5 md:px-1">
+        <div data-tip={$sort_asc ? '新しい順' : '古い順'} class="tooltip tooltip-bottom tooltip-secondary">
+          <button class="btn btn-secondary btn-circle btn-xs md:btn-sm shadow" on:click={handleSort}>
+            {#if $sort_asc}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 md:h-5 md:w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+              </svg>
+            {:else}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 md:h-5 md:w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+              </svg>
+            {/if}
+          </button>
+        </div>
+      </div>
+
       {#if $admin}
         <div class="px-0.5 md:px-1">
-          <div data-tip="管理者ページ" class="tooltip tooltip-bottom tooltip-secondary">
+          <div data-tip="管理者ページ" class="tooltip tooltip-bottom tooltip-accent">
             <Link to="/admin">
-              <button class="btn btn-secondary btn-circle btn-xs md:btn-sm"
+              <button class="btn btn-accent btn-circle btn-xs md:btn-sm shadow"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-4 w-4 md:h-5 md:w-5"

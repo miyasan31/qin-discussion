@@ -28,19 +28,19 @@
   height: calc(100vh - 111px);
 }
 .border-1 {
-  border: 1px solid #00000022;
+  border: 1px solid #eeeeee;
 }
 .border-t-1 {
-  border-top: 1px solid #00000022;
+  border-top: 1px solid #eeeeee;
 }
 .border-t-1-none {
-  border-top: 1px solid #00000000;
+  border-top: 1px solid #fff;
 }
 .border-b-1 {
-  border-bottom: 1px solid #00000022;
+  border-bottom: 1px solid #eeeeee;
 }
 .border-l-1 {
-  border-left: 1px solid #00000022;
+  border-left: 1px solid #eeeeee;
 }
 .chat-msg {
   width: fit-content;

@@ -4,7 +4,7 @@ import { Link } from 'svelte-routing';
 import { onMount } from 'svelte';
 import type { PostsType, TitleSizeType } from '../models/types';
 import { admin, thread, event } from '../store';
-import { db } from '../firebase/firebase';
+import { db, FirebaseTimestamp } from '../firebase/firebase';
 import type { DocumentType } from '../firebase/firebase';
 
 let pid: string = '';
@@ -38,6 +38,7 @@ const handleFetch = (id: string): void => {
 const handleChenge = (): void => {
   let posts = {
     checked: !post.checked,
+    create_time: FirebaseTimestamp.now(),
   };
   db.collection('qin-salon').doc($event).collection('posts').doc(pid).set(posts, { merge: true });
 };
@@ -50,17 +51,17 @@ onMount(
 );
 </script>
 
-<section class="w-full">
+<section class="w-full bg-white">
   <div class="absolute top-14 md:top-16 pt-3 pl-4 flex">
     <Link to="/">
-      <button class="btn btn-primary btn-sm mr-2">一覧へ戻る</button>
+      <button class="btn btn-primary btn-sm mr-2 shadow">一覧へ戻る</button>
     </Link>
     {#if $admin}
       {#if post.checked}
-        <button class="btn btn-accent btn-sm mr-2" disabled={$admin ? false : true} on:click={handleChenge}
+        <button class="btn btn-accent btn-sm mr-2 shadow" disabled={$admin ? false : true} on:click={handleChenge}
           >取消</button>
       {:else}
-        <button class="btn btn-secondary btn-sm mr-2" disabled={$admin ? false : true} on:click={handleChenge}
+        <button class="btn btn-secondary btn-sm mr-2 shadow" disabled={$admin ? false : true} on:click={handleChenge}
           >終了</button>
       {/if}
     {/if}
@@ -82,7 +83,7 @@ onMount(
           {post.title}
         </p>
         <div class="flex justify-center">
-          <div class="flex items-center justify-center rounded-full    bg-primary py-2 sm:py-3 px-3 sm:px-5">
+          <div class="flex items-center justify-center rounded-full    bg-primary py-2 sm:py-3 px-3 sm:px-5 shadow-lg">
             <span class="text-sm sm:text-xl text-white font-bold">
               {post.creater_name}
             </span>
