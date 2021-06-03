@@ -1,6 +1,6 @@
 <style>
 .root {
-  --toastBackground: rgba(255, 255, 255, 0.582);
+  --toastBackground: rgba(223, 223, 223, 0.692);
   --toastColor: #424242;
   --toastProgressBackground: #38ccbd;
   --toastContainerTop: auto;
