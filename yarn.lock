@@ -1698,10 +1698,20 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
 
+"@zerodevx/svelte-toast@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.3.0.tgz#39a15b409ddb6790c66a0665cbd589c0d8dd9234"
+  integrity sha512-TY5dLB5DEpxuHu60M6gum+fDxzIGXg35R8500orz58JTFs9LiHWoEfeJ4n9t7Afix3iMmYLl2thjhnCHCiQIhQ==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
+
+abstract-nested-router@^0.1.20:
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/abstract-nested-router/-/abstract-nested-router-0.1.20.tgz#3a5750851a1c1046ecad0791ba28d45740b7b393"
+  integrity sha512-S2t0VHmBgrodni9e25KxKGmA/FP9BwVO8qnPl77O7TsO9W+E2d23F2IU5ZEofkv00UlxH5ypwCND1qWXaZkjNA==
 
 acorn-jsx@^5.3.1:
   version "5.3.1"
@@ -2521,6 +2531,11 @@ decamelize@^1.1.0, decamelize@^1.1.2, decamelize@^1.2.0:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
+decode-uri-component@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+
 dedent-js@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/dedent-js/-/dedent-js-1.0.1.tgz#bee5fb7c9e727d85dffa24590d10ec1ab1255305"
@@ -3029,6 +3044,11 @@ fill-range@^7.0.1:
   integrity sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
   dependencies:
     to-regex-range "^5.0.1"
+
+filter-obj@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/filter-obj/-/filter-obj-1.1.0.tgz#9b311112bc6c6127a16e016c6c5d7f19e0805c5b"
+  integrity sha1-mzERErxsYSehbgFsbF1/GeCAXFs=
 
 find-up@^1.0.0:
   version "1.1.2"
@@ -5406,6 +5426,16 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
+query-string@^6.8.3:
+  version "6.14.1"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.14.1.tgz#7ac2dca46da7f309449ba0f86b1fd28255b0c86a"
+  integrity sha512-XDxAeVmpfu1/6IjyT/gXHOl+S0vQ9owggJ30hhWKdHAsNPOcasn5o9BW0eejZqL2e4vMjhAxoW3jVHcD6mbcYw==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    filter-obj "^1.1.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
+
 queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
@@ -5994,6 +6024,11 @@ specificity@^0.4.1:
   resolved "https://registry.yarnpkg.com/specificity/-/specificity-0.4.1.tgz#aab5e645012db08ba182e151165738d00887b019"
   integrity sha512-1klA3Gi5PD1Wv9Q0wUoOQN1IWAuPu0D1U03ThXTr0cJ20+/iq2tHSDnK7Kk/0LXJ1ztUB2/1Os0wKmfyNgUQfg==
 
+split-on-first@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+  integrity sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
@@ -6025,6 +6060,11 @@ stdout-stream@^1.4.0:
   integrity sha512-j4emi03KXqJWcIeF8eIXkjMFN1Cmb8gUlDYGeBALLPo5qdyTfA9bOtl8m33lRoC+vFMkP3gl0WsDr6+gzxbbTA==
   dependencies:
     readable-stream "^2.0.1"
+
+strict-uri-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+  integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
 
 string-hash@^1.1.1:
   version "1.1.3"
@@ -6371,6 +6411,11 @@ svelte-spa-router@^3.1.0:
   integrity sha512-jlM/xwjn57mylr+pzHYCOOy+IPQauT46gOucNGTBu6jHcFXu3F+oaojN4PXC1LYizRGxFB6QA0qnYbZnRfX7Sg==
   dependencies:
     regexparam "1.3.0"
+
+svelte-toast@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/svelte-toast/-/svelte-toast-1.0.0.tgz#9b562d8c819a38c524e07b3f17f30b46dae7c630"
+  integrity sha512-i6XHJgCgyAYmobEXS78iei6cQBLYIDgk1rrj65wM0sIi4RzCl/9205sVruZT7zUf0N2xsLkeN2rFh9inlRJXEg==
 
 svelte2tsx@^0.1.157:
   version "0.1.189"
@@ -6921,6 +6966,14 @@ yargs@^13.3.2:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
+
+yrv@^0.0.38:
+  version "0.0.38"
+  resolved "https://registry.yarnpkg.com/yrv/-/yrv-0.0.38.tgz#140270ca3c3c9ee3bc57131ba69b4d77921843ec"
+  integrity sha512-J/kAbiJzjc62c0jy4WvHCMoTL2Rmtj/L+4S2+GnTHgw/A2JuYncg28r8pbB9SS6ml+1SRTqM6QVPCeQE5KTBxw==
+  dependencies:
+    abstract-nested-router "^0.1.20"
+    query-string "^6.8.3"
 
 zwitch@^1.0.0:
   version "1.0.5"
