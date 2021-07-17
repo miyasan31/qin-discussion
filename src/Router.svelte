@@ -14,7 +14,7 @@ import { thread } from './store';
       <div class={$thread ? 'flex' : ''}>
         <div class={$thread ? 'hidden md:block md:flex-2' : 'w-full'}>
           <Route path="/"><Discussion /></Route>
-          <Route path="/talking/:id"><Talking /></Route>
+          <Route path="/talking/:id" let:params><Talking pid={params.id} /></Route>
           <Route path="/admin"><AdminPostDelete /></Route>
           <Route path="/admin/event"><AdminEvent /></Route>
           <Route path="*"><NotFound /></Route>
