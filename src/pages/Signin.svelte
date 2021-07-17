@@ -5,6 +5,7 @@ import { admin, name, event } from '../store';
 import { navigate } from 'svelte-routing';
 import { db } from '../firebase/firebase';
 import { fly } from 'svelte/transition';
+import type { SnapshotType } from '../firebase/firebase';
 
 let tab: boolean = false;
 let error: boolean = false;
@@ -13,48 +14,27 @@ let password: string = '';
 let select_event: string = '';
 let promise = [];
 
-const handleTabYet = (): void => {
-  tab = false;
-};
-const handleTabFin = (): void => {
-  tab = true;
-};
+const handleToggleTab = (boolean: boolean) => (tab = boolean);
 
-const handleSelect = (e): void => {
-  select_event = e.target.value;
-};
+const handleSelectEvent = (e) => (select_event = e.target.value);
 
-const handleJoin = (): void => {
-  if (userName === '') {
-    name.update((store_name) => (store_name = '匿名さん'));
-  } else {
-    name.update((store_name) => (store_name = userName));
-  }
-  event.update((store_event) => (store_event = select_event));
+const handleSignin = (adminAcc: boolean) => {
+  name.update(() => {
+    if (adminAcc && userName === '') return 'しまぶー';
+    else if (!adminAcc && userName === '') return '匿名さん';
+    else return userName;
+  });
+  if (adminAcc) admin.update(() => true);
+  event.update(() => select_event);
   navigate('/', { replace: true });
 };
 
-const handleAdmin = (): void => {
-  if (password === 'miyasanismiya3') {
-    if (userName === '') {
-      name.update((store_name) => (store_name = 'しまぶー'));
-    } else {
-      name.update((store_name) => (store_name = userName));
-    }
-    admin.update((store_admin) => (store_admin = true));
-    event.update((store_event) => (store_event = select_event));
-    navigate('/', { replace: true });
-  } else {
-    error = true;
-  }
-};
-
-const handleEvent = async () => {
+const handleFetchEvent = async () => {
   const result = await db
     .collection('qin-salon')
     .orderBy('eid', 'asc')
     .get()
-    .then((docs) => {
+    .then((docs: SnapshotType) => {
       let event = [];
       docs.forEach((data) => {
         event.push(data.data());
@@ -65,15 +45,10 @@ const handleEvent = async () => {
       return error;
     });
 
-  if (result === error) {
-    return;
-  }
   return result;
 };
 
-onMount(async () => {
-  promise = await handleEvent();
-});
+onMount(async () => (promise = await handleFetchEvent()));
 </script>
 
 <div class="flex flex-col justify-center items-center h-screen w-full bg-primary bg-opacity-90">
@@ -85,22 +60,8 @@ onMount(async () => {
 
   <div class="fixed z-10 card w-10/12 sm:w-8/12 md:w-5/12 bg-gray-100 shadow-xl">
     <div class="w-full flex cursor-pointer bg-white shadow">
-      <!-- 冗長クラス -->
-      <div
-        class={tab
-          ? 'flex-1 py-1.5 md:py-2.5 box-border border-b-1 text-center text-base md:text-lg text-gray-400'
-          : 'flex-1 py-1.5 md:py-2.5 box-border text-center md:text-lg font-bold border-b-2 border-primary-focus text-gray-700'}
-        on:click={handleTabYet}>
-        視聴者
-      </div>
-      <!-- 冗長クラス -->
-      <div
-        class={!tab
-          ? 'flex-1 py-1.5 md:py-2.5 box-border border-b-1 text-center text-base md:text-lg text-gray-400'
-          : 'flex-1 py-1.5 md:py-2.5 box-border text-center md:text-lg font-bold border-b-2 border-primary-focus text-gray-700'}
-        on:click={handleTabFin}>
-        管理者
-      </div>
+      <div class={tab ? 'tab-base' : 'tab-active'} on:click={() => handleToggleTab(false)}>視聴者</div>
+      <div class={!tab ? 'tab-base' : 'tab-active'} on:click={() => handleToggleTab(true)}>管理者</div>
     </div>
 
     <div class="p-10 pb-5">
@@ -110,8 +71,7 @@ onMount(async () => {
         <select
           class="select select-bordered select-primary w-full shadow-sm"
           bind:value={select_event}
-          on:select={handleSelect}
-          autofocus>
+          on:select={handleSelectEvent}>
           <option id="default" value="" disabled>イベントを選択してください</option>
           {#each result as r}
             <option id={r.eid} value={r.eid} selected={select_event === r.eid}>{r.event_title}</option>
@@ -159,13 +119,13 @@ onMount(async () => {
           class:hidden={tab}
           class:shadow={select_event === '' ? false : true}
           disabled={select_event !== '' ? false : true}
-          on:click={handleJoin}>参加する</button>
+          on:click={() => handleSignin(false)}>参加する</button>
         <button
           class="btn btn-primary"
           class:shadow={password !== 'miyasanismiya3' ? false : true}
           class:hidden={!tab}
           disabled={select_event !== '' && password === 'miyasanismiya3' ? false : true}
-          on:click={handleAdmin}>主催する</button>
+          on:click={() => handleSignin(true)}>主催する</button>
       </div>
     </div>
   </div>

@@ -65,25 +65,15 @@ const handleAdd = async () => {
 };
 
 const handleClear1 = () => {
-  toast.push(`
-        <div class="flex items-center justify-center">
-          <div class="flex-auto flex items-center mr-2 text-secondary">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="flex-1">
-            <div class="font-semibold">イベントを追加しました</div>
-          </div>
-        </div>
-      `);
   title = '';
   event_date = '';
 };
+
 const handleClear2 = () => {
   check_title = '';
   check_event_date = '';
 };
+
 const handleAllClear = () => {
   title = '';
   event_date = '';
@@ -97,21 +87,16 @@ function formatDate(dt) {
   const d = ('00' + dt.getDate()).slice(-2);
   return parseInt(y + m + d, 10);
 }
+
 beforeUpdate(() => {
   if (event_date !== '') {
     const date_err = formatDate(new Date()) > getNowYMD(event_date);
-    if (date_err) {
-      error = true;
-    } else {
-      error = false;
-    }
+    if (date_err) error = true;
+    else error = false;
   }
 });
-onMount(
-  async (): Promise<void> => {
-    thread.update((store_thread) => (store_thread = false));
-  }
-);
+
+onMount(async () => thread.update((store_thread) => (store_thread = false)));
 </script>
 
 {#if $admin}
@@ -210,11 +195,3 @@ onMount(
 {:else}
   <NotFound />
 {/if}
-
-<div class="flex">
-  <div><strong>登録完了</strong></div>
-  <div>
-    <div>イベント名：${check_title}</div>
-    <div>開催日：${check_event_date}</div>
-  </div>
-</div>

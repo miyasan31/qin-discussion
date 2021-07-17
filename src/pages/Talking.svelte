@@ -7,7 +7,7 @@ import { admin, thread, event } from '../store';
 import { db, FirebaseTimestamp } from '../firebase/firebase';
 import type { DocumentType } from '../firebase/firebase';
 
-let pid: string = '';
+export let pid: string;
 let title_size: TitleSizeType;
 let post: PostsType = {
   pid: '',
@@ -17,7 +17,7 @@ let post: PostsType = {
   checked: false,
 };
 
-const handleFetch = (id: string): void => {
+const handleFetch = (id: string) => {
   db.collection('qin-salon')
     .doc($event)
     .collection('posts')
@@ -35,7 +35,7 @@ const handleFetch = (id: string): void => {
     });
 };
 
-const handleChenge = (): void => {
+const handleChenge = () => {
   let posts = {
     checked: !post.checked,
     create_time: FirebaseTimestamp.now(),
@@ -43,12 +43,9 @@ const handleChenge = (): void => {
   db.collection('qin-salon').doc($event).collection('posts').doc(pid).set(posts, { merge: true });
 };
 
-onMount(
-  async (): Promise<void> => {
-    pid = await window.location.pathname.split('/talking/')[1];
-    await handleFetch(pid);
-  }
-);
+onMount(async () => {
+  await handleFetch(pid);
+});
 </script>
 
 <section class="w-full bg-white">
@@ -58,11 +55,9 @@ onMount(
     </Link>
     {#if $admin}
       {#if post.checked}
-        <button class="btn btn-accent btn-sm mr-2 shadow" disabled={$admin ? false : true} on:click={handleChenge}
-          >取消</button>
+        <button class="btn btn-accent btn-sm mr-2 shadow" on:click={handleChenge}>取消</button>
       {:else}
-        <button class="btn btn-secondary btn-sm mr-2 shadow" disabled={$admin ? false : true} on:click={handleChenge}
-          >終了</button>
+        <button class="btn btn-secondary btn-sm mr-2 shadow" on:click={handleChenge}>終了</button>
       {/if}
     {/if}
     <div class="flex-grow" />
@@ -109,3 +104,13 @@ onMount(
     </div>
   {/if}
 </section>
+
+<!-- const handlePagenation = async () => {
+  if ($sort_asc) {
+    next_pid = $yetPosts[0].pid;
+  } else {
+    next_pid = $yetPosts[$yetPosts.length - 1].pid;
+  }
+  await handleFetch(next_pid);
+  pid = next_pid;
+}; -->
