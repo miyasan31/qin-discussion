@@ -9,23 +9,17 @@ import { db } from '../firebase/firebase';
 
 let posts: PostsType[] = [];
 
-const handleFetch = (): void => {
-  posts = [...$yetPosts, ...$finPosts];
-};
+const handleFetch = () => (posts = [...$yetPosts, ...$finPosts]);
 
-const handleDelete = (pid: string): void => {
+const handleDelete = (pid: string) => {
   db.collection('qin-salon').doc($event).collection('posts').doc(pid).delete();
   posts = posts.filter((post) => post.pid !== pid);
 };
 
-onMount(
-  async (): Promise<void> => {
-    thread.update((store_thread) => (store_thread = false));
-    if ($admin) {
-      await handleFetch();
-    }
-  }
-);
+onMount(async () => {
+  thread.update((store_thread) => (store_thread = false));
+  if ($admin) await handleFetch();
+});
 </script>
 
 {#if $admin}

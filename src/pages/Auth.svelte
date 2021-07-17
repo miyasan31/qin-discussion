@@ -4,10 +4,8 @@ import { onMount } from 'svelte';
 import { admin, name } from '../store';
 import { Signin } from './index';
 
-onMount((): void => {
-  if ($name === '' || !$admin) {
-    navigate('/');
-  }
+onMount(() => {
+  if ($name === '' || !$admin) navigate('/');
 });
 </script>
 

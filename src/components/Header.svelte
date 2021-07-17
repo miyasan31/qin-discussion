@@ -2,17 +2,12 @@
 import { onMount } from 'svelte';
 import { Link } from 'svelte-routing';
 import { admin, thread, modal, event, sort_asc } from '../store';
+import type { Writable } from 'svelte/store';
 
 let disabled: boolean = false;
-const handleModal = (): void => {
-  modal.update((store_modal) => !store_modal);
-};
-const handleThread = (): void => {
-  thread.update((store_thread) => !store_thread);
-};
-const handleSort = () => {
-  sort_asc.update((store_sort_asc) => (store_sort_asc = !store_sort_asc));
-};
+
+const handleToggleEvent = (event: Writable<boolean>) => event.update((e) => !e);
+
 onMount(() => {
   // 今後timestampと比較
   function formatDate(dt) {
@@ -22,11 +17,9 @@ onMount(() => {
     return y + m + d;
   }
   const data = formatDate(new Date());
-  if (parseInt($event, 10) < parseInt(data, 10)) {
-    disabled = true;
-  } else {
-    disabled = false;
-  }
+
+  if (parseInt($event, 10) < parseInt(data, 10)) disabled = true;
+  else disabled = false;
 });
 </script>
 
@@ -54,7 +47,10 @@ onMount(() => {
     <div class="flex bg-white rounded-full px-1 md:px-1 pt-1.5 pb-1 md:py-1 shadow">
       <div class="px-0.5 md:px-1">
         <div data-tip="お題投稿" class="tooltip tooltip-bottom tooltip-primary">
-          <button class="btn btn-primary btn-circle btn-xs md:btn-sm shadow" {disabled} on:click={handleModal}
+          <button
+            class="btn btn-primary btn-circle btn-xs md:btn-sm shadow"
+            {disabled}
+            on:click={() => handleToggleEvent(modal)}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-4 w-4 md:h-5 md:w-5"
@@ -73,7 +69,7 @@ onMount(() => {
 
       <div class="px-0.5 md:px-1">
         <div data-tip="スレッド" class="tooltip tooltip-bottom tooltip-natural">
-          <button class="btn btn-natural btn-circle btn-xs md:btn-sm shadow" on:click={handleThread}
+          <button class="btn btn-natural btn-circle btn-xs md:btn-sm shadow" on:click={() => handleToggleEvent(thread)}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-4 w-4 md:h-5 md:w-5"
@@ -91,8 +87,10 @@ onMount(() => {
       </div>
 
       <div class="px-0.5 md:px-1">
-        <div data-tip={$sort_asc ? '新しい順' : '古い順'} class="tooltip tooltip-bottom tooltip-secondary">
-          <button class="btn btn-secondary btn-circle btn-xs md:btn-sm shadow" on:click={handleSort}>
+        <div data-tip={$sort_asc ? '古い順' : '新しい順'} class="tooltip tooltip-bottom tooltip-secondary">
+          <button
+            class="btn btn-secondary btn-circle btn-xs md:btn-sm shadow"
+            on:click={() => handleToggleEvent(sort_asc)}>
             {#if $sort_asc}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +102,7 @@ onMount(() => {
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                  d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
               </svg>
             {:else}
               <svg
@@ -117,7 +115,7 @@ onMount(() => {
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+                  d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
               </svg>
             {/if}
           </button>

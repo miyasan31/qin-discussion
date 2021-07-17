@@ -8,7 +8,7 @@ import type { CommetsType } from '../models/types';
 let text: string = '';
 let comments: CommetsType[] = [];
 
-const handleFetchComments = (): void => {
+const handleFetchComments = () => {
   db.collection('qin-salon')
     .doc($event)
     .collection('comments')
@@ -22,7 +22,7 @@ const handleFetchComments = (): void => {
     });
 };
 
-const handleSend = async (): Promise<void> => {
+const handleSend = async () => {
   if (text.trim() !== '') {
     const ref = await db.collection('qin-salon').doc($event).collection('comments').doc();
     let send_comments: CommetsType = {
@@ -36,19 +36,11 @@ const handleSend = async (): Promise<void> => {
   }
 };
 
-const handleReset = (): void => {
-  text = '';
-};
+const handleReset = () => (text = '');
 
-const handleToggle = (): void => {
-  thread.update((store_thread) => !store_thread);
-};
+const handleToggle = () => thread.update((store_thread) => !store_thread);
 
-onMount(
-  async (): Promise<void> => {
-    await handleFetchComments();
-  }
-);
+onMount(async () => await handleFetchComments());
 </script>
 
 <section class="w-full shadow bg-white">

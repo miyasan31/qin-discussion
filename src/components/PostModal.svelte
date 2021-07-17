@@ -8,7 +8,7 @@ let error: boolean = false;
 let title: string = '';
 let creater_name: string = '';
 
-const handleAdd = async (): Promise<void> => {
+const handleAdd = async () => {
   if (title.trim() !== '') {
     const ref = await db.collection('qin-salon').doc($event).collection('posts').doc();
     let formData: PostsType = {
@@ -36,16 +36,14 @@ const handleAdd = async (): Promise<void> => {
     error = true;
   }
 };
-const handleReset = (): void => {
+const handleReset = () => {
   modal.update((store_modal) => (store_modal = false));
   title = '';
   creater_name = '';
   error = false;
 };
 
-const handleClose = (): void => {
-  modal.update((store_modal) => (store_modal = false));
-};
+const handleClose = () => modal.update((store_modal) => (store_modal = false));
 </script>
 
 <input type="checkbox" bind:checked={$modal} id="my-modal-2" class="modal-toggle" />

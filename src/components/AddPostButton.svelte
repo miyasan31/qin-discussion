@@ -1,8 +1,7 @@
 <script type="ts">
 import { modal } from '../store';
-const handleModal = (): void => {
-  modal.update((store_modal) => !store_modal);
-};
+
+const handleModal = () => modal.update((store_modal) => !store_modal);
 </script>
 
 <div class="absolute right-10 bottom-10 mt-4">
