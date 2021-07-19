@@ -97,8 +97,8 @@ onMount(async () => (promise = await handleFetchEvent()));
 
 <div class="flex flex-col justify-center items-center h-screen w-full bg-primary bg-opacity-80">
   <div
-    class="fixed z-0 font-bold text-max text-primary opacity-20 transform rotate-45 sm:rotate-12 overflow-clip"
-    style="font-size: 900px">
+    class="fixed z-0 font-bold text-max text-gray-400 opacity-10 transform rotate-45 sm:rotate-12 overflow-clip"
+    style="font-size: 900px; font-family: Montserrat Bold,sans-serif;">
     Qin
   </div>
 
