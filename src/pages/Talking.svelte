@@ -48,7 +48,7 @@ onMount(async () => {
 });
 </script>
 
-<section class="w-full bg-white">
+<section class="w-full bg-base-100">
   <div class="absolute top-14 md:top-16 pt-3 pl-4 flex">
     <Link to="/">
       <button class="btn btn-primary btn-sm mr-2 shadow">一覧へ戻る</button>
@@ -71,7 +71,7 @@ onMount(async () => {
         <p
           style="line-height: 1.4;"
           class={clsx(
-            'block font-bold leading-6 mb-5 whitespace-pre-line overflow-scroll bar-hidden',
+            'text-base-300 font-bold leading-6 mb-5 whitespace-pre-line overflow-scroll bar-hidden',
             $thread ? 'text-left md:px-5' : 'text-center md:px-20',
             title_size
           )}>
@@ -79,7 +79,7 @@ onMount(async () => {
         </p>
         <div class="flex justify-center">
           <div class="flex items-center justify-center rounded-full    bg-primary py-2 sm:py-3 px-3 sm:px-5 shadow-lg">
-            <span class="text-sm sm:text-xl text-white font-bold">
+            <span class="text-sm sm:text-xl text-primary-content font-bold">
               {post.creater_name}
             </span>
             {#if post.checked}

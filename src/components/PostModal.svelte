@@ -48,8 +48,8 @@ const handleClose = () => modal.update((store_modal) => (store_modal = false));
 
 <input type="checkbox" bind:checked={$modal} id="my-modal-2" class="modal-toggle" />
 <div class="modal">
-  <div class="w-full h-screen" on:click={handleClose} />
-  <div class="fixed z-50 modal-box bg-gray-100">
+  <div class="w-full h-screen bg-primary bg-opacity-5" on:click={handleClose} />
+  <div class="fixed z-50 modal-box bg-base-content">
     <TextInput
       text_type="textarea"
       type="text"

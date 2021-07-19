@@ -43,17 +43,17 @@ const handleToggle = () => thread.update((store_thread) => !store_thread);
 onMount(async () => await handleFetchComments());
 </script>
 
-<section class="w-full shadow bg-white">
-  <div class="flex flex-col main-height border-l-1">
-    <div class="flex items-center border-b-1 border-t-1-none shadow">
-      <p class="m-0 pl-3 py-3 md:py-3.5 font-bold text-xs md:text-sm  overflow-ellipsis">
+<section class="w-full bg-base-100">
+  <div class="flex flex-col main-height border-l border-base-200">
+    <div class="flex items-center border-b border-base-200 border-t-1-none">
+      <p class="m-0 pl-3 py-3 md:py-3.5 font-bold text-xs md:text-sm text-base-300  overflow-ellipsis">
         ディスカッションに参加しよう！
       </p>
       <div class="flex-grow" />
       <button class="btn btn-ghost btn-xs md:btn-sm mr-4 hover:shadow" on:click={handleToggle}
         ><svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 -mx-1"
+          class="h-5 w-5 -mx-1 text-base-300"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor">
@@ -61,27 +61,27 @@ onMount(async () => await handleFetchComments());
         </svg></button>
     </div>
 
-    <div class="flex-grow flex flex-col-reverse overflow-scroll overflow-x-hidden">
+    <div class="flex-grow flex flex-col-reverse overflow-scroll overflow-x-hidden pt-2 pb-20 ">
       {#each comments as comment}
         <div class="mx-2 mb-2">
-          <div class="font-bold pl-1 text-sm">
+          <div class="font-bold pl-1 text-sm text-base-300">
             {comment.creater_name}
           </div>
           <div
-            class="chat-msg bg-gray-300 bg-opacity-50 px-3 py-1.5 rounded-tr-lg rounded-b-lg text-md whitespace-pre-line shadow-sm"
-            class:bg-primary={comment.text.lastIndexOf('？') !== -1}>
+            class="chat-msg px-3 py-1.5 rounded-tr-lg rounded-b-lg text-md text-base-300 bg-gray-400 bg-opacity-20 whitespace-pre-line shadow-sm">
             {comment.text}
           </div>
         </div>
       {/each}
     </div>
-    <div class="flex space-x-2 border-t-1 p-2 pb-3 bg-gray-50 shadow">
+
+    <div class="flex space-x-2 border-t-1 p-2 pb-3 bg-base-content">
       <textarea
         type="text"
         bind:value={text}
         placeholder={`${$name}からメッセージを送信`}
         multiple
-        class="w-full pt-4 input input-primary input-bordered leading-tight resize-y resize-label shadow-sm" />
+        class="w-full pt-4 input input-primary input-bordered text-base-300 leading-tight resize-y resize-label shadow-sm" />
       <button class="btn btn-primary shadow-sm" disabled={text.trim() === '' ? true : false} on:click={handleSend}
         >送信</button>
     </div>
