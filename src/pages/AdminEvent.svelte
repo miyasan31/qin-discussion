@@ -100,18 +100,19 @@ onMount(async () => thread.update((store_thread) => (store_thread = false)));
 </script>
 
 {#if $admin}
-  <section class="w-full bg-white">
+  <section class="w-full bg-base-100">
     <div class="md:hidden absolute top-14 md:top-16 pt-3 pl-4">
       <Link to="/">
         <button class="btn btn-primary btn-sm mr-2">一覧へ戻る</button>
       </Link>
     </div>
-    <div class="flex">
+
+    <div class="flex" data-theme="light">
       <div class="flex justify-evenly items-center main-height w-full m-0">
         <PhoneMock>
           {#if check_title === ''}
             <div class="px-8" in:fly={{ y: 100, duration: 500 }}>
-              <span class="flex justify-center items-center text-2xl font-semibold text-center"
+              <span class="flex justify-center items-center text-2xl font-semibold text-center text-base-300"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-7 w-7 mr-1 -ml-3 text-secondary"
@@ -154,7 +155,7 @@ onMount(async () => thread.update((store_thread) => (store_thread = false)));
             </div>
           {:else}
             <div class="px-8 py-10 w-full overflow-scroll overflow-x-hidden" in:fly={{ y: 100, duration: 500 }}>
-              <span class="flex justify-center items-center text-2xl font-semibold text-center">
+              <span class="flex justify-center items-center text-2xl font-semibold text-center text-base-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-7 w-7 mr-1 -ml-3 text-secondary"
@@ -168,16 +169,16 @@ onMount(async () => thread.update((store_thread) => (store_thread = false)));
               </span>
 
               <div class="flex flex-col gap-y-3 mt-4">
-                <div class="text-accent text-lg text-center">この内容で追加しますか？</div>
+                <div class="text-lg text-center text-base-300">この内容で追加しますか？</div>
 
                 <div>
-                  <div class="text-gray-500 text-sm">イベント名</div>
-                  <div class="chat-msg pl-1 text-xl font-semibold whitespace-pre-line">{title}</div>
+                  <div class="text-base-300 text-sm">イベント名</div>
+                  <div class="chat-msg text-base-300 pl-1 text-xl font-semibold whitespace-pre-line">{title}</div>
                 </div>
 
                 <div>
-                  <div class="text-gray-500 text-sm">開催日</div>
-                  <div class="pl-1 text-xl font-semibold">{event_date}</div>
+                  <div class="text-base-300 text-sm">開催日</div>
+                  <div class="text-base-300 pl-1 text-xl font-semibold">{event_date}</div>
                 </div>
 
                 <button class="btn btn-primary btn-wide shadow" on:click={handleAdd}>追加</button>

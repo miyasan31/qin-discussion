@@ -45,7 +45,7 @@ onMount(async () => {
 });
 </script>
 
-<section class="w-full bg-white">
+<section class="w-full bg-base-100">
   <div class="flex cursor-pointer shadow">
     <div class={tab ? 'tab-base' : 'tab-active'} on:click={() => handleToggleTab(false)}>まだ話してない</div>
     <div class={!tab ? 'tab-base' : 'tab-active'} on:click={() => handleToggleTab(true)}>もう話した</div>

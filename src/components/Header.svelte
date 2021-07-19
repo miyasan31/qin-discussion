@@ -1,12 +1,36 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 import { Link } from 'svelte-routing';
-import { admin, thread, modal, event, sort_asc } from '../store';
+import { admin, thread, modal, event, sort_asc, theme } from '../store';
 import type { Writable } from 'svelte/store';
 
 let disabled: boolean = false;
+const theme_data = [
+  { icon: '🌞', theme: 'light' },
+  { icon: '🌛', theme: 'dark' },
+  { icon: '🎃', theme: 'halloween' },
+  { icon: '🐝', theme: 'bumblebee' },
+  { icon: '🧛‍♂️', theme: 'dracula' },
+];
 
 const handleToggleEvent = (event: Writable<boolean>) => event.update((e) => !e);
+
+const handleChangeTheme = (theme_value: string) => theme.update(() => theme_value);
+
+const handleSetIcon = (theme) => {
+  switch (theme) {
+    case 'light':
+      return '🌞';
+    case 'dark':
+      return '🌛';
+    case 'halloween':
+      return '🎃';
+    case 'bumblebee':
+      return '🐝';
+    case 'dracula':
+      return '🧛‍♂️';
+  }
+};
 
 onMount(() => {
   // 今後timestampと比較
@@ -23,11 +47,10 @@ onMount(() => {
 });
 </script>
 
-<header
-  class="relative z-50 body-font bg-gradient-to-r from-primary-focus to-primary py-2.5 px-2 md:py-3 md:px-5 shadow">
-  <div class="flex justify-center items-center">
+<header class="relative z-50 body-font bg-base-100 border-b border-base-200 py-2.5 px-2 md:py-3 md:px-5">
+  <div class="flex justify-center items-center bg-base-100">
     <Link to="/">
-      <span class="flex title-font items-center text-white">
+      <span class="flex title-font items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6 md:h-7 md:w-7 text-secondary transform rotate-12"
@@ -38,13 +61,33 @@ onMount(() => {
             d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
             clip-rule="evenodd" />
         </svg>
-        <span class="ml-1 text-xl md:text-2xl font-bold">Qin Discussion</span>
+        <span class="ml-1 text-xl md:text-2xl font-bold text-primary"
+          ><span class="text-base-300 text-opacity-70">Qin</span>Discussion</span>
       </span>
     </Link>
 
     <div class="flex-grow" />
 
-    <div class="flex bg-white rounded-full px-1 md:px-1 pt-1.5 pb-1 md:py-1 shadow">
+    <div class="flex bg-base-content rounded-full px-1 md:px-1 pt-1.5 pb-1 md:py-1 shadow">
+      <div class="px-0.5 md:px-1">
+        <div class="dropdown dropdown-hover dropdown-end">
+          <div tabindex="0" class="btn btn-circle bg-base-100 hover:bg-base-100 btn-xs md:btn-sm btn-ghost shadow pl-1">
+            {handleSetIcon($theme)}
+          </div>
+          <ul class="shadow menu dropdown-content bg-base-content rounded-box w-44 p-3">
+            {#each theme_data as theme}
+              <li data-theme={theme.theme}>
+                <button
+                  class="inline btn btn-sm btn-primary text-left text-white rounded-full lowercase"
+                  on:click={() => handleChangeTheme(theme.theme)}>
+                  {theme.icon}
+                  {theme.theme}
+                </button>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      </div>
       <div class="px-0.5 md:px-1">
         <div data-tip="お題投稿" class="tooltip tooltip-bottom tooltip-primary">
           <button

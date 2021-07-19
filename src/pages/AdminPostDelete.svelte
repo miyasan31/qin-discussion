@@ -23,7 +23,7 @@ onMount(async () => {
 </script>
 
 {#if $admin}
-  <section class="w-full bg-white">
+  <section class="w-full bg-base-100">
     <div class="md:hidden absolute top-14 md:top-16 pt-3 pl-4">
       <Link to="/">
         <button class="btn btn-primary btn-sm mr-2">一覧へ戻る</button>
@@ -33,8 +33,9 @@ onMount(async () => {
     <div class="flex">
       <div class="main-height overflow-y-auto w-full pb-60">
         {#each posts as post}
-          <div class="flex py-3 md:py-4 px-6 border-b-1 hover:bg-gray-100 hover:shadow-md">
-            <div class="text-base md:text-lg font-bold pr-5">
+          <div
+            class="flex py-3 md:py-4 px-6 border-b border-base-200 hover:bg-base-300 hover:bg-opacity-10 hover:shadow-md">
+            <div class="text-base-300 md:text-lg font-bold pr-5">
               {post.title}
             </div>
             <div class="flex-grow" />

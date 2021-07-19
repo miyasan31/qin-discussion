@@ -3,8 +3,8 @@ import { link } from 'svelte-routing';
 export let nav: 'delete' | 'event';
 </script>
 
-<div class="w-60 hidden md:block drawer-side border-l-1 shadow">
-  <ul class="menu  p-2 ml-0 overflow-y-auto  bg-white font-semibold text-gray-600">
+<div class="w-60 hidden md:block drawer-side border-l border-base-200">
+  <ul class="menu p-2 ml-0 overflow-y-auto font-semibold text-base-300">
     <li>
       <a use:link href="/">
         <svg

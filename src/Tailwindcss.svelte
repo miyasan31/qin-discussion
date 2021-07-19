@@ -4,15 +4,13 @@
 @tailwind utilities;
 
 .tab-base {
-  @apply flex-1 py-2 md:py-2.5 text-center text-base md:text-lg text-gray-400;
-  border-bottom: 1px solid #00000022;
+  @apply flex-1 py-2 md:py-2.5 text-center text-base md:text-lg text-base-300 text-opacity-50 border-b border-base-200;
 }
 .tab-active {
-  @apply flex-1 py-2 md:py-2.5 text-center md:text-lg font-bold border-b-2 border-primary-focus text-gray-700;
+  @apply flex-1 py-2 md:py-2.5 text-center md:text-lg font-bold border-b-2 border-primary text-base-300;
 }
 .title-list {
-  @apply py-4 md:py-5 px-6 sm:px-8 md:px-10 lg:px-14 text-xl md:text-2xl font-bold hover:shadow-md hover:bg-gray-100 whitespace-pre-line;
-  border-bottom: 1px solid #00000022;
+  @apply py-4 md:py-5 px-6 sm:px-8 md:px-10 lg:px-14 text-xl md:text-2xl font-bold text-base-300 bg-base-100 border-b border-base-200 hover:shadow-md  hover:bg-base-300 hover:bg-opacity-10 whitespace-pre-line;
 }
 </style>
 

@@ -2492,10 +2492,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-daisyui@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-1.1.1.tgz#07549fabfd95255f28303cfabf9243ac6df8b80b"
-  integrity sha512-oBGfk8nXrj54r2nxI+T/0vOljTJnttSYqF8oLde88Uniii8/aOJfIOuIQpaXaJTge/Om4yIkBDlX9k8LbjQN5g==
+daisyui@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-1.10.0.tgz#4b9ff90313339a21e93a4009c61f424bd75d080f"
+  integrity sha512-rpmcOXpRG7upsjNx6krswKi6MfvMZSKRMqTrYvDUkE/xv07tc0LgeizcIUqbE1AfPSLLztmW+1NNnmv0kexlzQ==
 
 dashdash@^1.12.0:
   version "1.14.1"
@@ -6380,6 +6380,16 @@ svelte-preprocess@^4.0.0:
   version "4.7.3"
   resolved "https://registry.npmjs.org/svelte-preprocess/-/svelte-preprocess-4.7.3.tgz"
   integrity sha512-Zx1/xLeGOIBlZMGPRCaXtlMe4ZA0faato5Dc3CosEqwu75MIEPuOstdkH6cy+RYTUYynoxzNaDxkPX4DbrPwRA==
+  dependencies:
+    "@types/pug" "^2.0.4"
+    "@types/sass" "^1.16.0"
+    detect-indent "^6.0.0"
+    strip-indent "^3.0.0"
+
+svelte-preprocess@^4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.7.4.tgz#e4d5208ab25c2aaaf19e837f7d7bbf7930e61d2b"
+  integrity sha512-mDAmaltQl6e5zU2VEtoWEf7eLTfuOTGr9zt+BpA3AGHo8MIhKiNSPE9OLTCTOMgj0vj/uL9QBbaNmpG4G1CgIA==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
