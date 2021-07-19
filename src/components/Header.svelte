@@ -61,7 +61,7 @@ onMount(() => {
             d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
             clip-rule="evenodd" />
         </svg>
-        <span class="ml-1 text-xl md:text-2xl font-bold text-primary"
+        <span style="font-family: Montserrat Bold,sans-serif;" class="ml-1 text-xl md:text-2xl font-bold text-primary"
           ><span class="text-base-300 text-opacity-70">Qin</span>Discussion</span>
       </span>
     </Link>
