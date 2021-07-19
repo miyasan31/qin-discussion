@@ -4,8 +4,8 @@ body {
   height: 100%;
 }
 body {
-  color: #000000cc;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
     sans-serif;
+  /* color: #6358ff; */
 }
