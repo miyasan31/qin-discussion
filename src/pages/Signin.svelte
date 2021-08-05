@@ -43,18 +43,21 @@ const handleSetIcon = (theme) => {
 };
 
 const handleSignin = (adminAcc: boolean) => {
-  name.update(() => {
-    if (adminAcc && userName === '') return 'しまぶー';
-    else if (!adminAcc && userName === '') return '匿名さん';
-    else return userName;
-  });
-  if (adminAcc) admin.update(() => true);
-  event.update(() => select_event);
-  navigate('/', { replace: true });
+  if (adminAcc && password.trim() !== 'miyasanismiya3') return;
+  if (select_event.trim() !== '') {
+    name.update(() => {
+      if (adminAcc && userName === '') return 'しまぶー';
+      else if (!adminAcc && userName === '') return '匿名さん';
+      else return userName;
+    });
+    if (adminAcc) admin.update(() => true);
+    event.update(() => select_event);
+    navigate('/', { replace: true });
+  }
 };
 
 const handleFetchEvent = async () => {
-  const result = await db
+  return await db
     .collection('qin-salon')
     .orderBy('eid', 'asc')
     .get()
@@ -68,8 +71,6 @@ const handleFetchEvent = async () => {
     .catch((error) => {
       return error;
     });
-
-  return result;
 };
 
 onMount(async () => (promise = await handleFetchEvent()));
@@ -158,18 +159,8 @@ onMount(async () => (promise = await handleFetchEvent()));
       {/if}
       <!-- class:hidden={boolean}で切り替えパターン -->
       <div class="flex justify-end pt-5">
-        <button
-          class="btn btn-primary"
-          class:hidden={tab}
-          class:shadow={select_event === '' ? false : true}
-          disabled={select_event !== '' ? false : true}
-          on:click={() => handleSignin(false)}>参加する</button>
-        <button
-          class="btn btn-primary"
-          class:shadow={password !== 'miyasanismiya3' ? false : true}
-          class:hidden={!tab}
-          disabled={select_event !== '' && password === 'miyasanismiya3' ? false : true}
-          on:click={() => handleSignin(true)}>主催する</button>
+        <button class="btn btn-primary shadow" class:hidden={tab} on:click={() => handleSignin(false)}>参加する</button>
+        <button class="btn btn-primary shadow" class:hidden={!tab} on:click={() => handleSignin(true)}>主催する</button>
       </div>
     </div>
   </div>

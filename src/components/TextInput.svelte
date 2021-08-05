@@ -18,7 +18,7 @@ const typeAction = (node) => {
     rows="3"
     {placeholder}
     class={`input input-${color} input-bordered w-full h-32 sm:h-40 bg-base-100 text-base-300 resize-none mb-2.5 shadow-sm`}
-    class:error-input={error} />
+    class:bg-red-200={error} />
 {:else if text_type === 'input'}
   <input
     use:typeAction
