@@ -61,7 +61,7 @@ onMount(async () => await handleFetchComments());
         </svg></button>
     </div>
 
-    <div class="flex-grow flex flex-col-reverse overflow-scroll overflow-x-hidden pt-2 pb-20 ">
+    <div class="flex-grow flex flex-col-reverse overflow-scroll overflow-x-hidden pt-2">
       {#each comments as comment}
         <div class="mx-2 mb-2">
           <div class="font-bold pl-1 text-sm text-base-300">
@@ -82,8 +82,7 @@ onMount(async () => await handleFetchComments());
         placeholder={`${$name}からメッセージを送信`}
         multiple
         class="w-full pt-4 input input-primary input-bordered text-base-300 leading-tight resize-y resize-label shadow-sm" />
-      <button class="btn btn-primary shadow-sm" disabled={text.trim() === '' ? true : false} on:click={handleSend}
-        >送信</button>
+      <button class="btn btn-primary shadow-sm" on:click={handleSend}>送信</button>
     </div>
   </div>
 </section>

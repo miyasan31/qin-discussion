@@ -32,8 +32,6 @@ const handleAdd = async () => {
       .catch(() => {
         error = true;
       });
-  } else {
-    error = true;
   }
 };
 const handleReset = () => {
@@ -66,11 +64,7 @@ const handleClose = () => modal.update((store_modal) => (store_modal = false));
       placeholder="お名前（未入力の場合は匿名参加）" />
     <div class="flex justify-end mt-5">
       <button class="btn btn-primary btn-outline btn-sm hover:shadow" on:click={handleReset}>キャンセル</button>
-      <button
-        class="btn btn-primary btn-sm ml-2"
-        class:shadow={title.trim() === '' ? false : true}
-        disabled={title.trim() === '' ? true : false}
-        on:click={handleAdd}>投稿</button>
+      <button class="btn btn-primary btn-sm ml-2 shadow" on:click={handleAdd}>投稿</button>
     </div>
   </div>
 </div>
