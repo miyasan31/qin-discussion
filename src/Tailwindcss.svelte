@@ -12,6 +12,9 @@
 .title-list {
   @apply py-4 md:py-5 px-6 sm:px-8 md:px-10 lg:px-14 text-xl md:text-2xl font-bold text-base-300 bg-base-100 border-b border-base-200 hover:shadow-md  hover:bg-base-300 hover:bg-opacity-10 whitespace-pre-line;
 }
+.border-t-opacity-0 {
+  border-top: 1px solid #00000000;
+}
 </style>
 
 <!-- @applyがエラー起きるので仮置き -->

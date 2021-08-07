@@ -63,7 +63,8 @@ const handleClose = () => modal.update((store_modal) => (store_modal = false));
       bind:error
       placeholder="お名前（未入力の場合は匿名参加）" />
     <div class="flex justify-end mt-5">
-      <button class="btn btn-primary btn-outline btn-sm hover:shadow" on:click={handleReset}>キャンセル</button>
+      <button class="btn text-primary btn-ghost hover:text-primary btn-sm hover:shadow" on:click={handleReset}
+        >キャンセル</button>
       <button class="btn btn-primary btn-sm ml-2 shadow" on:click={handleAdd}>投稿</button>
     </div>
   </div>
