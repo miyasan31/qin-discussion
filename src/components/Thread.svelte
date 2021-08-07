@@ -45,8 +45,8 @@ onMount(async () => await handleFetchComments());
 
 <section class="w-full bg-base-100">
   <div class="flex flex-col main-height border-l border-base-200">
-    <div class="flex items-center border-b border-base-200 border-t-1-none">
-      <p class="m-0 pl-3 py-3 md:py-3.5 font-bold text-xs md:text-sm text-base-300  overflow-ellipsis">
+    <div class="flex items-center border-b border-t border-t-opacity-0 border-base-200">
+      <p class="m-0 pl-3 py-3 md:py-3.5 font-bold text-xs md:text-sm text-base-300 overflow-ellipsis">
         ディスカッションに参加しよう！
       </p>
       <div class="flex-grow" />
