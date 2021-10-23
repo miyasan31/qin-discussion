@@ -6396,10 +6396,10 @@ svelte-preprocess@^4.7.4:
     detect-indent "^6.0.0"
     strip-indent "^3.0.0"
 
-svelte-router-spa@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/svelte-router-spa/-/svelte-router-spa-6.0.2.tgz#505bfc72c6256658218012133a23858b5876510a"
-  integrity sha512-ySs/2TnjdLnvo0tHfdJsRPhPl0Mj4/h2qi0Zb8t4zC+BBBaCr6cZc7MtRfgzD4IMp80Nqe7ZXd/hCJuHSGtf5A==
+svelte-router-spa@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/svelte-router-spa/-/svelte-router-spa-6.0.3.tgz#2f769f4b124ac5995dcdfd43b4e887b44ad6cb5a"
+  integrity sha512-aHgyUVVI/WjipQNmKcXpX0hFZtkW5Y6hwH5aXLr2P/aRQ/qlX8ZbKQJUwKjOD59p7tt/c+wqokiIt68N7aNuKQ==
   dependencies:
     url-params-parser "^1.0.3"
 
