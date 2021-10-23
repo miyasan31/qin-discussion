@@ -39,7 +39,7 @@
     "svelte-preprocess": "^4.7.4",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2",
     "tslib": "^2.0.0",
-    "typescript": "^3.9.3"
+    "typescript": "3.9.10"
   },
   "dependencies": {
     "@smui/icon-button": "^4.1.0",
