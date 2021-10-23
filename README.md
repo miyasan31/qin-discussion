@@ -7,8 +7,7 @@
 - Vercel(deploy)
 
 ## 要件定義
-<img width="1131" alt="スクリーンショット 2021-05-31 10 35 21" src="https://user-images.githubusercontent.com/71614432/120127984-e8b41480-c1fb-11eb-844e-d65bb697ba57.png">
-
+サロン内に掲載
 
 ## 今後やりたいこと
 - [x] 管理者ページをダッシュボード化して、イベントの追加ができるようにする
