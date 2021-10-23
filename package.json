@@ -53,7 +53,7 @@
     "sass": "^1.32.12",
     "sirv-cli": "^1.0.0",
     "smelte": "^1.1.5",
-    "svelte-materialify": "^0.3.10",
+    "svelte-materialify": "0.3.11",
     "svelte-router-spa": "^6.0.2",
     "svelte-routing": "^1.6.0",
     "svelte-spa-history-router": "^2.1.0",
