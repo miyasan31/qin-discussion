@@ -42,7 +42,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@smui/icon-button": "^4.1.0",
+    "@smui/icon-button": "4.2.0",
     "@tailwindcss/typography": "^0.4.0",
     "@zerodevx/svelte-toast": "^0.3.0",
     "clsx": "^1.1.1",

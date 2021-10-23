@@ -1286,6 +1286,14 @@
     "@material/dom" "^11.0.0"
     svelte "^3.35.0"
 
+"@smui/common@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@smui/common/-/common-4.2.0.tgz#81ddb9d5b9a39cc814188fa18834301261b9ea9e"
+  integrity sha512-ersYpoqvb0hGP2lFdOtNlue5m74H/eOEtpbb5r4Sk8lmwaDh+Gj8xbX93AAE2Jfq/p6XcEmHB6CsGoATi5JHOQ==
+  dependencies:
+    "@material/dom" "^11.0.0"
+    svelte "^3.35.0"
+
 "@smui/data-table@4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@smui/data-table/-/data-table-4.1.0.tgz#472f2180233311f0d4827ffd978668687def948e"
@@ -1354,6 +1362,16 @@
     "@material/icon-button" "^11.0.0"
     "@smui/common" "^4.1.0"
     "@smui/ripple" "^4.1.0"
+
+"@smui/icon-button@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@smui/icon-button/-/icon-button-4.2.0.tgz#5162d636d6fb167013c86593b077210c74fa04a9"
+  integrity sha512-jX3nb3u+ddpqJh0wuiRGLqSmYyUlP9gze5eQ7I9a+HQPbVe4pX0M/dms/Dofm+fwjgzYKMBxKyV/l4eRLSjomA==
+  dependencies:
+    "@material/density" "^11.0.0"
+    "@material/icon-button" "^11.0.0"
+    "@smui/common" "^4.2.0"
+    "@smui/ripple" "^4.2.0"
 
 "@smui/image-list@4.1.0":
   version "4.1.0"
@@ -1451,6 +1469,14 @@
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@smui/ripple/-/ripple-4.1.0.tgz#a5d3a3d6ef5930d48b0f44e4eb11ebbaeb1d0803"
   integrity sha512-AjvX3lDldej2PvtRIeyqiOxzEIUyR1wh79eS2dF01Kvo+SAZVpMGk9zJg27ohyXKhnhWDRsFLfH4mSqkU+wJnw==
+  dependencies:
+    "@material/dom" "^11.0.0"
+    "@material/ripple" "^11.0.0"
+
+"@smui/ripple@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@smui/ripple/-/ripple-4.2.0.tgz#cde00f50393094658b32965569c6758274b24154"
+  integrity sha512-oTaPC/6FAYwifth9AvkUuIC5SenMPITg1yZSdD9B1Wcgi2NRAWuMDV2j6Kc+yYgv6iUCKlQ26fCxK2xmYwqhug==
   dependencies:
     "@material/dom" "^11.0.0"
     "@material/ripple" "^11.0.0"
