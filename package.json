@@ -46,7 +46,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "@zerodevx/svelte-toast": "^0.3.0",
     "clsx": "^1.1.1",
-    "daisyui": "^1.10.0",
+    "daisyui": "1.25.4",
     "firebase": "^8.4.3",
     "node-sass": "^5.0.0",
     "postcss-nesting": "^8.0.1",
