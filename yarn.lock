@@ -6371,10 +6371,10 @@ svelte-material-ui@^4.1.0:
     "@smui/top-app-bar" "4.1.0"
     "@smui/touch-target" "4.1.0"
 
-svelte-materialify@^0.3.10:
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/svelte-materialify/-/svelte-materialify-0.3.10.tgz#c50bbb51008925982bd43e38114e6ac6f213cf9c"
-  integrity sha512-liiZuCwxgnOh0IIPugdzZtyPgxqQmCwvU/RDcNeHd/Vw8JHHYTCFRyPRM6hyvd+htEVgHWV11bGcRUNZwnzCAg==
+svelte-materialify@0.3.11:
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/svelte-materialify/-/svelte-materialify-0.3.11.tgz#bdd0a73961e9b408bb584bf2d85b2bb39e5424e9"
+  integrity sha512-MLtZtdSOHditOdJOYqlB8s7NxIFRbYKXJzij5s9gz5WVbJFVEqdX2TqOleg4wYeMOujtOCm+/x3RP5YGyzRxIQ==
 
 svelte-preprocess@^4.0.0:
   version "4.7.3"
