@@ -47,7 +47,7 @@
     "@zerodevx/svelte-toast": "^0.3.0",
     "clsx": "^1.1.1",
     "daisyui": "^1.10.0",
-    "firebase": "^8.4.3",
+    "firebase": "8.10.1",
     "node-sass": "^5.0.0",
     "postcss-nesting": "^8.0.1",
     "sass": "^1.32.12",
