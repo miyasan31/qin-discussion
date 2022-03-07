@@ -52,7 +52,7 @@
     "postcss-nesting": "^8.0.1",
     "sass": "^1.32.12",
     "sirv-cli": "^1.0.0",
-    "smelte": "^1.1.5",
+    "smelte": "1.1.8",
     "svelte-materialify": "^0.3.10",
     "svelte-router-spa": "^6.0.2",
     "svelte-routing": "^1.6.0",

@@ -5941,10 +5941,10 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-smelte@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/smelte/-/smelte-1.1.5.tgz#a0499b453992f90acdb31e5d3d06f72e94cf5fef"
-  integrity sha512-viILc/BcxXh7dLgeKIGx1tff6A3UuftSlbMcs3wtCuJ0XbM/Sc4jnXT4G7H2l/FSANfAmuuzjUoR9o/s3MFnZQ==
+smelte@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/smelte/-/smelte-1.1.8.tgz#2e5286e880e8924e773014c15872875c1f31c4e8"
+  integrity sha512-lSr2rgzMu+h65dua8spu8Tb2hBQefhk5H7Cbuzs/9rdxNcoBNLaeWWdrgbc779x10002PVR2rP8G9tFO1Q3hbA==
   dependencies:
     autoprefixer "^9.8.6"
     merge-deep "^3.0.3"
@@ -5954,6 +5954,7 @@ smelte@^1.1.5:
     postcss-url "^10.1.1"
     rollup-plugin-postcss "^4.0.0"
     svelte "^3.31.2"
+    svelte-typed-component "^1.1.1"
     tailwind-css-variables "^2.0.3"
     tailwindcss "^2.0.3"
     tinycolor2 "^1.4.2"
@@ -6426,6 +6427,11 @@ svelte-toast@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/svelte-toast/-/svelte-toast-1.0.0.tgz#9b562d8c819a38c524e07b3f17f30b46dae7c630"
   integrity sha512-i6XHJgCgyAYmobEXS78iei6cQBLYIDgk1rrj65wM0sIi4RzCl/9205sVruZT7zUf0N2xsLkeN2rFh9inlRJXEg==
+
+svelte-typed-component@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/svelte-typed-component/-/svelte-typed-component-1.1.1.tgz#7626af706e40f0170cb76d96efb3ff5b7297dce1"
+  integrity sha512-LNqgXQtDeUHU2pXewrjP78NuMbmA4A2F+BAwoT+FS1WsJX6Wq0V/9QYbjWvjZBRI6RNEhcRj2/E7YuQX73NP0Q==
 
 svelte2tsx@^0.1.157:
   version "0.1.189"
