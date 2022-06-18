@@ -44,7 +44,7 @@
   "dependencies": {
     "@smui/icon-button": "^4.1.0",
     "@tailwindcss/typography": "^0.4.0",
-    "@zerodevx/svelte-toast": "^0.3.0",
+    "@zerodevx/svelte-toast": "0.7.2",
     "clsx": "^1.1.1",
     "daisyui": "^1.10.0",
     "firebase": "^8.4.3",
