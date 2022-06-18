@@ -1698,10 +1698,10 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
 
-"@zerodevx/svelte-toast@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.3.0.tgz#39a15b409ddb6790c66a0665cbd589c0d8dd9234"
-  integrity sha512-TY5dLB5DEpxuHu60M6gum+fDxzIGXg35R8500orz58JTFs9LiHWoEfeJ4n9t7Afix3iMmYLl2thjhnCHCiQIhQ==
+"@zerodevx/svelte-toast@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.7.2.tgz#904610b7d99d099bcdb83a005ee32e0b3351c909"
+  integrity sha512-vWiY6IqsstcOoQ8PFBuFuxgPkj1JFAGhUF9gC7wLx7c5A9SSfdtxWs/39ekGSIeyJK0yqWhTcmzGrCEWSELzDw==
 
 abbrev@1:
   version "1.1.1"
