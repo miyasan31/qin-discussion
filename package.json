@@ -59,6 +59,6 @@
     "svelte-spa-history-router": "^2.1.0",
     "svelte-spa-router": "^3.1.0",
     "svelte-toast": "^1.0.0",
-    "yrv": "^0.0.38"
+    "yrv": "0.0.53"
   }
 }
